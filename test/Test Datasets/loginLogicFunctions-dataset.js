@@ -10,4 +10,5 @@ const loginData = {
     travelerUsernames: ['traveler123', 'traveler456'],
     travelerIds: [123, 456]
 };
-export {loginData}
+
+export { loginData };

@@ -6,61 +6,68 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Travel Tracker</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
   <div class="wrapper">
-    <section class="content-left">
-      <h2>An Endless World of Possibilities</h2>
-      <h1>Touring Tracker</h1>
-      <div class="content-left-top">
-        <!-- <div class="content-text"> -->
+    <section class="login-view">
+      <div class="content-left">
+        <h2>An Endless World of Possibilities</h2>
+        <h1>Touring Tracker</h1>
+        <form class="login-form">
+          <input type="text" id="username" placeholder="Username" required>
+          <input type="password" id="password" placeholder="Password" required>
+          <button type="submit" id="login-button">Login</button>
+        </form>
+      </div>
+    </section>
+    <section class="dashboard hidden">
+      <section class="content-left">
+        <h2 id="user-greeting">Welcome, User!</h2>
+        <div class="content-left-top">
           <h2>Possible Future Trip Countdown</h2>
           <p class="text">This area can be written/displayed with anything.</p>
           <a href="#">In Case I Need a Link</a>
-        <!-- </div> -->
-      </div>
-      <div class="content-left-bottom">
-        <!-- <div class="content-text"> -->
+        </div>
+        <div class="content-left-bottom">
           <h2>Upcoming Trips</h2>
-          <p class="text">This are can be wrtiten/dispalyed with anything.</p>
+          <p class="text">This area can be written/displayed with anything.</p>
           <a href="#">See Upcoming Trips</a>
-        <!-- </div> -->
-      </div>
-    </section>
-    <section class="content-right">
-      <div class="content-right-top">
-        <div class="content-text">
-          <h2>Past Trips</h2>
-          <p class="text">This area can be written/displayed with anything.</p>
-          <a href="#">See Past Trips</a>
         </div>
-        <div class="content-img">
-          <!-- IMAGE -->
+      </section>
+      <section class="content-right">
+        <div class="content-right-top">
+          <div class="content-text">
+            <h2>Past Trips</h2>
+            <p class="text">This area can be written/displayed with anything.</p>
+            <a href="#">See Past Trips</a>
+          </div>
+          <div class="content-img">
+            <!-- IMAGE -->
+          </div>
         </div>
-      </div>
-      <div class="content-right-middle">
-        <div class="content-text">
-          <h2>Pending Trips</h2>
-          <p class="text">This area can be written/displayed with anything.</p>
-          <a href="#">See Your Pending Trips</a>
+        <div class="content-right-middle">
+          <div class="content-text">
+            <h2>Pending Trips</h2>
+            <p class="text">This area can be written/displayed with anything.</p>
+            <a href="#">See Your Pending Trips</a>
+          </div>
+          <div class="content-img">
+            <!-- IMAGE -->
+          </div>
         </div>
-        <div class="content-img">
-          <!-- IMAGE -->
+        <div class="content-right-bottom">
+          <div class="content-text">
+            <h2>Total Amount Spent on Trips</h2>
+            <p class="text">This area can be written/displayed with anything.</p>
+            <a href="#">See Total Amount Spent on Trips</a>
+          </div>
+          <div class="content-img">
+            <!-- IMAGE -->
+          </div>
         </div>
-      </div>
-      <div class="content-right-bottom">
-        <div class="content-text">
-          <h2>Total Amount Spent on Trips</h2>
-          <p class="text">This are can be wrtiten/dispalyed with anything.</p>
-          <a href="#">See Total Amount Spent on Trips</a>
-        </div>
-        <div class="content-img"> 
-          <!-- IMAGE -->
-        </div>
-      </div>
-
+      </section>
     </section>
   </div>
 

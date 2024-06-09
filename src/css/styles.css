@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
 
 * {
   padding: 0;
@@ -13,6 +13,48 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.login-view {
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), 
+  url('../images/Travel Photo - Road in Mountains.jpg') center/cover no-repeat;
+  min-height: 100vh;
+  padding: 30px;
+  color: #fff;
+  text-align: center;
+  display: grid;
+  place-items: center;
+  place-content: center;
+  outline: 2px solid rgba(255, 255, 255 , 0.7);
+  outline-offset: -20px;
+}
+
+.login-view h1 {
+  font-size: 60px;
+  text-shadow: 5px 10px 5px rgba(0, 0, 0, 0.7);
+  margin-bottom: 12px;
+}
+
+.login-form {
+  display: grid;
+  gap: 10px;
+}
+
+.login-form input {
+  padding: 10px;
+  font-size: 1em;
+}
+
+.login-form button {
+  padding: 10px;
+  background-color: #1eddfb;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
 }
 
 .wrapper {
