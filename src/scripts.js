@@ -12,6 +12,7 @@ import './images/Travel Photo - Alt Rocky Beach.jpg'
 import './images/Travel Photo - City on Rocky Coast.jpg'
 
 import './apiCalls'
+import { fetchData } from './apiCalls';
 
 
 
