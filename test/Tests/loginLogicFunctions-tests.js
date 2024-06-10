@@ -1,7 +1,6 @@
-const chai = require('chai');
 import { expect } from 'chai';
-const { validateCredentials, extractTravelerId } = require('../../src/logic functions/loginLogicFunctions');
-const { loginTestData } = require('../Test Datasets/loginLogicFunctions-tests');
+import { validateCredentials, extractTravelerId } from '../../src/logic functions/loginLogicFunctions';
+import { loginTestData } from '../Test Datasets/loginLogicFunctions-dataset';
 
 describe('loginFunctions', () => {
     describe('validateCredentials', () => {
@@ -16,6 +15,7 @@ describe('loginFunctions', () => {
         it('should return true for valid traveler credentials', () => {
             expect(validateCredentials(validCredentials.username, validCredentials.password)).to.be.true;
         });
+
         it('should return false for invalid traveler credentials', () => {
             expect(validateCredentials(invalidCredentials.username, invalidCredentials.password)).to.be.false;
         });
@@ -42,4 +42,5 @@ describe('loginFunctions', () => {
         });
     });
 });
+
 

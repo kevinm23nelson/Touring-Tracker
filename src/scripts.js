@@ -1,11 +1,10 @@
-// scripts.js
 import './css/styles.css';
 import './images/turing-logo.png';
 import './images/Travel Photo - Beach from Above.jpg';
 import './images/Travel Photo - Rocky Beach from Above.jpg';
 import './images/Travel Photo - Alt Rocky Beach.jpg';
 import './images/Travel Photo - City on Rocky Coast.jpg';
-import { fetchData } from './apiCalls';
+import { loadData } from './apiCalls';
 import { validateCredentials, extractTravelerId } from './logic functions/loginLogicFunctions';
 import { travelerPastTrips } from './logic functions/travelerLogicFunctions';
 import { displayPastTrips, displayRecentTripImage } from './domUpdates/domUpdates';
@@ -25,17 +24,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (validateCredentials(username, password)) {
       const travelerId = extractTravelerId(username);
-      fetchData(`http://localhost:3001/api/v1/travelers/${travelerId}`)
-        .then(data => {
-          showDashboard(data);
-          return travelerPastTrips(travelerId);
+      loadData()
+        .then(({ travelers, trips, destinations }) => {
+          const travelerData = travelers.travelers.find(traveler => traveler.id === travelerId);
+          showDashboard(travelerData);
+          return travelerPastTrips(travelerId, trips, destinations);
         })
         .then(({ pastTripsDestinations, recentDestination }) => {
           displayPastTrips(pastTripsDestinations);
           displayRecentTripImage(recentDestination);
         })
         .catch(error => {
-          console.error('Error loading past trips:', error);
+          console.error('Error loading data:', error);
         });
     } else {
       alert('Invalid username or password');

@@ -1,14 +1,23 @@
-const loginData = {
+const loginTestData = {
     validCredentials: {
-        username: 'traveler50',
-        password: 'travel'
+      username: 'traveler50',
+      password: 'travel'
     },
     invalidCredentials: {
-        username: 'user50',
-        password: 'user50'
+      username: 'traveler50',
+      password: 'wrongpassword'
     },
-    travelerUsernames: ['traveler123', 'traveler456'],
-    travelerIds: [123, 456]
-};
-
-export { loginData };
+    travelerUsernames: [
+      'traveler1',
+      'traveler50',
+      'traveler100'
+    ],
+    travelerIds: [
+      1,
+      50,
+      100
+    ]
+  };
+  
+  export { loginTestData };
+  

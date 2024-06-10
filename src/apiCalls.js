@@ -9,33 +9,19 @@ function fetchData(url, options = {}) {
     .catch(error => {
       console.error('Error fetching data:', error);
       throw error; 
-    })
-    .finally(() => {
-      console.log('Fetch attempt finished.');
     });
 }
-fetchData('http://localhost:3001/api/v1/travelers')
-  .then(data => {
-    console.log('Travelers:', data);
-  })
-  .catch(error => {
-    console.error('Error fetching travelers:', error);
-  });
 
-fetchData('http://localhost:3001/api/v1/trips')
-  .then(data => {
-    console.log('Trips:', data);
-  })
-  .catch(error => {
-    console.error('Error fetching trips:', error);
-  });
+function loadData() {
+  return Promise.all([
+    fetchData('http://localhost:3001/api/v1/travelers'),
+    fetchData('http://localhost:3001/api/v1/trips'),
+    fetchData('http://localhost:3001/api/v1/destinations')
+  ]).then(([travelers, trips, destinations]) => ({
+    travelers,
+    trips,
+    destinations
+  }));
+}
 
-fetchData('http://localhost:3001/api/v1/destinations')
-  .then(data => {
-    console.log('Destinations:', data);
-  })
-  .catch(error => {
-    console.error('Error fetching destinations:', error);
-  });
-
-export { fetchData };
+export { fetchData, loadData };
