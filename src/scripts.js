@@ -4,10 +4,10 @@ import './images/Travel Photo - Beach from Above.jpg';
 import './images/Travel Photo - Rocky Beach from Above.jpg';
 import './images/Travel Photo - Alt Rocky Beach.jpg';
 import './images/Travel Photo - City on Rocky Coast.jpg';
-import { loadData } from './apiCalls';
+import { fetchAllData, allTripData, allDestinationData, allUsersData, allSingleUserData } from './startData';
 import { validateCredentials, extractTravelerId } from './logic functions/loginLogicFunctions';
-import { travelerPastTrips } from './logic functions/travelerLogicFunctions';
-import { displayPastTrips, displayRecentTripImage } from './domUpdates/domUpdates';
+import { travelerPastTrips, calculateAnnualSpend, calculateTotalWithAgentFee, getUpcomingTrips } from './logic functions/travelerLogicFunctions';
+import { displayPastTrips, displayRecentTripImage, displayTotalCost, displayUpcomingTrips } from './domUpdates/domUpdates';
 
 document.addEventListener('DOMContentLoaded', () => {
   const loginView = document.querySelector('.login-view');
@@ -24,19 +24,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (validateCredentials(username, password)) {
       const travelerId = extractTravelerId(username);
-      loadData()
-        .then(({ travelers, trips, destinations }) => {
-          const travelerData = travelers.travelers.find(traveler => traveler.id === travelerId);
-          showDashboard(travelerData);
-          return travelerPastTrips(travelerId, trips, destinations);
-        })
-        .then(({ pastTripsDestinations, recentDestination }) => {
+      fetchAllData().then(() => {
+        const user = allUsersData.find(user => user.id === travelerId);
+        showDashboard(user);
+
+        travelerPastTrips(travelerId).then(({ pastTripsDestinations, recentDestination }) => {
           displayPastTrips(pastTripsDestinations);
           displayRecentTripImage(recentDestination);
-        })
-        .catch(error => {
-          console.error('Error loading data:', error);
         });
+
+        calculateAnnualSpend(travelerId).then(totalCost => {
+          const { agentFee, totalWithFee } = calculateTotalWithAgentFee(totalCost);
+          displayTotalCost(totalCost, agentFee, totalWithFee);
+        });
+
+        getUpcomingTrips(travelerId).then(upcomingTrips => {
+          displayUpcomingTrips(upcomingTrips);
+        });
+      });
     } else {
       alert('Invalid username or password');
     }
