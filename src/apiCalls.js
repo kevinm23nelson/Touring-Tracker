@@ -14,8 +14,6 @@ function fetchData(url, options = {}) {
       console.log('Fetch attempt finished.');
     });
 }
-
-// Example fetch calls
 fetchData('http://localhost:3001/api/v1/travelers')
   .then(data => {
     console.log('Travelers:', data);

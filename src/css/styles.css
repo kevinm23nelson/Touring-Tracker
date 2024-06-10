@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
 
 * {
   padding: 0;
@@ -9,24 +9,29 @@
 body {
   font-family: 'Poppins', sans-serif;
   line-height: 1.5;
-  background-color: aliceblue;
+  background-color: rgb(182, 204, 224);
   display: flex;
   align-items: center;
   justify-content: center;
+  min-height: 100vh;
 }
 
 .login-view {
   background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), 
   url('../images/Travel Photo - Road in Mountains.jpg') center/cover no-repeat;
-  min-height: 100vh;
-  padding: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: #fff;
   text-align: center;
-  display: grid;
-  place-items: center;
-  place-content: center;
-  outline: 2px solid rgba(255, 255, 255 , 0.7);
-  outline-offset: -20px;
+  width: 100%;
+  height: 100vh;
+}
+
+.login-view .content-left {
+  padding: 50px;
+  max-width: 600px;
+  width: 100%;
 }
 
 .login-view h1 {
@@ -60,6 +65,10 @@ body {
 .wrapper {
   margin: 25px;
   box-shadow: 0 0 14px -1px rgba(145, 145, 145, 0.75);
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  width: 100%;
 }
 
 .text {
@@ -75,21 +84,26 @@ body {
   font-weight: 400;
 }
 
-.content-left {
-  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), 
-  url('../images/Travel Photo - Road in Mountains.jpg') center/cover no-repeat;
+.content-left, .content-right {
   min-height: 100vh;
   padding: 30px;
   color: #fff;
   text-align: center;
-  display: grid;
-  place-items: center;
-  place-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   outline: 2px solid rgba(255, 255, 255 , 0.7);
   outline-offset: -20px;
+  flex: 1;
 }
 
-.content-left h1 {
+.content-left {
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), 
+  url('../images/Travel Photo - Road in Mountains.jpg') center/cover no-repeat;
+}
+
+.content-left h1, .content-right h1 {
   font-size: 60px;
   text-shadow: 5px, 10px, 5px rgba(0, 0, 0, 0.7);
   margin-bottom: 12px;
@@ -97,20 +111,25 @@ body {
 
 .content-right-top, .content-right-middle, .content-right-bottom {
   display: grid;
+  width: 100%;
+}
+
+.content-right-top .content-img, .content-right-middle .content-img, .content-right-bottom .content-img {
+  height: 400px;
+  background-size: cover;
+  background-position: center;
 }
 
 .content-right-top .content-img {
-  background: url('../images/Travel Photo - Alt Rocky Beach.jpg') center/cover no-repeat;
-  height: 400px;
+  background-image: url('../images/Travel Photo - Alt Rocky Beach.jpg');
 }
 .content-right-middle .content-img {
-  background: url('../images/Travel Photo - City on Rocky Coast.jpg') center/cover no-repeat;
-  height: 400px;
+  background-image: url('../images/Travel Photo - City on Rocky Coast.jpg');
 }
 .content-right-bottom .content-img {
-  background: url('../images/Travel Photo - Beach with Palm Trees.jpg') center/cover no-repeat;
-  height: 400px;
+  background-image: url('../images/Travel Photo - Beach with Palm Trees.jpg');
 }
+
 .content-text {
   color: #555c66;
   background-color: #fff;
@@ -118,10 +137,13 @@ body {
   display: grid;
   place-content: center;
   place-items: start;
+  margin: 20px 0;
 }
+
 .content-text h2 {
   margin-bottom: 12px;
 }
+
 .content-text a {
   margin-top: 20px;
   background-color: #1eddfb;
@@ -133,9 +155,11 @@ body {
   position: relative;
   transition: background-color 0.3s ease-in-out;
 }
+
 .content-text a:hover {
   background-color: #30b556;
 }
+
 .content-text a::after {
   position: absolute;
   content: "";
@@ -145,12 +169,19 @@ body {
   border-bottom: 20px solid transparent;
   border-top: 40px solid transparent;
 }
-@media screen and (min-width: 768px){
+
+@media screen and (max-width: 767px) {
+  .wrapper {
+    flex-direction: column;
+  }
+}
+
+@media screen and (min-width: 768px) {
   .wrapper {
     margin: 40px;
   }
   .content-right-top, .content-right-middle, .content-right-bottom {
-    grid-template-columns: repeat(2, 1fr)
+    grid-template-columns: repeat(2, 1fr);
   }
   .content-right-middle .content-img {
     order: 1;
@@ -159,9 +190,13 @@ body {
     order: 2;
   }
 }
+
 @media screen and (min-width: 1200px) {
   .wrapper {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    justify-content: space-between;
+  }
+  .content-left, .content-right {
+    width: 50%;
   }
 }
