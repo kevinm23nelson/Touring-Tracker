@@ -1,5 +1,7 @@
-const displayPastTrips = (pastTripsDestinations) => {
+const displayPastTrips = (pastTripsDestinations, recentDestination) => {
   const pastTripsElement = document.querySelector('.content-right-top .content-text p');
+  const pastTripImageElement = document.querySelector('.content-right-top .content-img');
+  const destinationOverlayElement = document.querySelector('.content-right-top .destination-overlay');
   
   let formattedDestinations;
   
@@ -12,6 +14,8 @@ const displayPastTrips = (pastTripsDestinations) => {
   }
   
   pastTripsElement.innerText = formattedDestinations;
+  pastTripImageElement.style.backgroundImage = `url('${recentDestination.image}')`;
+  destinationOverlayElement.innerText = recentDestination.destination;
 };
 
 const displayRecentTripImage = (recentTrip) => {
@@ -27,6 +31,7 @@ const displayTotalCost = (totalCost, agentFee, totalWithFee) => {
 const displayUpcomingTrips = (upcomingTrips) => {
   const upcomingTripsElement = document.querySelector('.content-left-bottom .text');
   const upcomingTripImageElement = document.querySelector('.content-left-bottom .trip-image');
+  const upcomingDestinationOverlayElement = document.querySelector('.content-left-bottom .destination-overlay');
   
   if (upcomingTrips.length === 0) {
     upcomingTripsElement.innerText = "You have no upcoming trips";
@@ -45,7 +50,8 @@ const displayUpcomingTrips = (upcomingTrips) => {
     }
     
     upcomingTripsElement.innerText = tripText;
-    upcomingTripImageElement.src = sortedTrips[0].image;
+    upcomingTripImageElement.style.backgroundImage = `url('${sortedTrips[0].image}')`;
+    upcomingDestinationOverlayElement.innerText = sortedTrips[0].destination;
     upcomingTripImageElement.style.display = 'block';
   }
 };

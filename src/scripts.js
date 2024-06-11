@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
         showDashboard(user);
 
         const { pastTripsDestinations, recentDestination } = travelerPastTrips(travelerId);
-        displayPastTrips(pastTripsDestinations);
+        displayPastTrips(pastTripsDestinations, recentDestination);
         displayRecentTripImage(recentDestination);
 
         const totalCost = calculateAnnualSpend(travelerId);

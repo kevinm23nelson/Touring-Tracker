@@ -129,6 +129,20 @@ body {
   height: 300px; /* Adjust to make the image larger */
   margin-top: 10px;
   object-fit: cover;
+  position: relative;
+}
+
+.content-left-bottom .destination-overlay,
+.content-right-top .destination-overlay {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 5px 10px;
+  border-radius: 5px;
+  text-align: center;
 }
 
 .content-right .content-img {
@@ -141,6 +155,18 @@ body {
   font-size: 60px;
   text-shadow: 5px, 10px, 5px rgba(0, 0, 0, 0.7);
   margin-bottom: 12px;
+}
+
+.content-right-top .content-img {
+  position: relative;
+  width: 100%;
+  height: 200px; /* Adjust as necessary */
+  background-size: cover;
+  background-position: center;
+  margin-top: 10px;
+  display: flex;
+  align-items: flex-end; /* Align text towards the bottom */
+  justify-content: center; /* Center text horizontally */
 }
 
 .content-right-top, .content-right-middle, .content-right-bottom {
