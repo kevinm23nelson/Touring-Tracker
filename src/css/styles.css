@@ -146,7 +146,8 @@ body {
 }
 
 .content-left-bottom .destination-overlay,
-.content-right-top .destination-overlay {
+.content-right-top .destination-overlay,
+.content-right-middle .destination-overlay {
   position: absolute;
   bottom: 10px;
   left: 50%;
@@ -332,4 +333,19 @@ body {
   color: #555c66;
   font-weight: bold;
   margin-top: 10px;
+}
+
+/* Ensure the existing styles are applied correctly */
+.content-left-bottom .destination-overlay,
+.content-right-top .destination-overlay,
+.content-right-middle .destination-overlay {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 5px 10px;
+  border-radius: 5px;
+  text-align: center;
 }

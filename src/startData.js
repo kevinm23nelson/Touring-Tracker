@@ -1,3 +1,4 @@
+// startData.js
 import { fetchAllUserData, fetchSingleUserData, fetchAllTripsData, fetchAllDestinationData } from './apiCalls';
 
 let allUsersData = [];
@@ -13,9 +14,10 @@ export const fetchAllData = (userId) => {
     fetchAllDestinationData()
   ]).then(([allUserDataResult, singleUserDataResult, allTripsDataResult, allDestinationDataResult]) => {
     allUsersData = allUserDataResult;
+    allSingleUserData = singleUserDataResult;
     allTripData = allTripsDataResult;
     allDestinationData = allDestinationDataResult;
-    allSingleUserData = singleUserDataResult;
+    console.log('Fetched all data:', { allUsersData, allSingleUserData, allTripData, allDestinationData });
   }).catch(error => {
     console.error('Error fetching data:', error);
   });

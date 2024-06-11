@@ -18,6 +18,7 @@ export function fetchAllDestinationData() {
 }
 
 // Post
+// apiCalls.js
 export function addNewTrip(trip) {
   return fetch('http://localhost:3001/api/v1/trips', {
     method: 'POST',
@@ -26,11 +27,19 @@ export function addNewTrip(trip) {
     },
     body: JSON.stringify(trip)
   })
-    .then(response => response.json())
-    .then(data => {
-      return data;
-    })
-    .catch(error => {
-      console.error('Error adding new trip:', error);
-    });
+  .then(response => {
+    console.log('Response:', response); // Log the response for debugging
+    if (!response.ok) {
+      return response.json().then(error => {
+        throw new Error(`HTTP error! status: ${response.status}, message: ${error.message}`);
+      });
+    }
+    return response.json();
+  })
+  .catch(error => {
+    console.error('Error adding new trip:', error);
+    throw error;
+  });
 }
+
+

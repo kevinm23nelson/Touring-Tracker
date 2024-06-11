@@ -10,8 +10,10 @@ import { travelerPastTrips, calculateAnnualSpend, calculateTotalWithAgentFee, ge
 import { displayPastTrips, displayRecentTripImage, displayTotalCost, displayUpcomingTrips } from './domUpdates/domUpdates';
 import { addNewTrip } from './apiCalls';
 
+// scripts.js
+// scripts.js
 document.addEventListener('DOMContentLoaded', () => {
-  let nextTripId = 204; // Start new trips with ID 204
+  let nextTripId = 204; // Starting point for new trips
 
   const loginView = document.querySelector('.login-view');
   const dashboard = document.querySelector('.dashboard');
@@ -50,7 +52,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (validateCredentials(username, password)) {
       const travelerId = extractTravelerId(username);
       fetchAllData(travelerId).then(() => {
+        console.log('All Users Data:', allUsersData); // Log all users data
         const user = allUsersData.find(user => user.id === travelerId);
+        if (!user) {
+          console.error(`User with ID ${travelerId} not found.`);
+          return;
+        }
         showDashboard(user);
 
         const { pastTripsDestinations, recentDestination } = travelerPastTrips(travelerId);
@@ -65,6 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
         displayUpcomingTrips(upcomingTrips);
 
         populateDestinations();
+        updateNextTripId(); // Update the next trip ID
       });
     } else {
       alert('Invalid username or password');
@@ -72,6 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function showDashboard(travelerData) {
+    console.log('Traveler Data:', travelerData); // Log traveler data
     loginView.classList.add('hidden');
     dashboard.classList.remove('hidden');
     userGreeting.innerText = `Welcome, ${travelerData.name}`;
@@ -101,6 +110,12 @@ document.addEventListener('DOMContentLoaded', () => {
     errorMessageElement.innerText = errorMessage;
     calculateCostButton.disabled = !!errorMessage;
     reserveTripButton.disabled = !!errorMessage || !estimatedCostElement.innerText;
+  }
+
+  function updateNextTripId() {
+    const maxId = allTripData.reduce((max, trip) => Math.max(max, trip.id), 0);
+    nextTripId = maxId + 1;
+    console.log('Next Trip ID:', nextTripId);
   }
 
   calculateCostButton.addEventListener('click', () => {
@@ -149,12 +164,22 @@ document.addEventListener('DOMContentLoaded', () => {
       suggestedActivities: []
     };
 
-    addNewTrip(newTrip).then(() => {
-      fetchAllData(travelerId).then(() => {
-        const pendingTrips = allTripData.filter(trip => trip.userID === travelerId && trip.status === 'pending');
-        displayPendingTrips(pendingTrips);
+    console.log('New trip:', newTrip); // Log the new trip object for debugging
+
+    addNewTrip(newTrip)
+      .then(data => {
+        console.log('Trip successfully added:', data); // Log the successful addition
+        fetchAllData(travelerId).then(() => {
+          const pendingTrips = allTripData.filter(trip => trip.userID === travelerId && trip.status === 'pending');
+          displayPendingTrips(pendingTrips);
+          const upcomingTrips = getUpcomingTrips(travelerId);
+          displayUpcomingTrips(upcomingTrips);
+        });
+      })
+      .catch(error => {
+        console.error('Error adding new trip:', error);
+        updateNextTripId(); // Update the next trip ID in case of an error
       });
-    });
   });
 
   function displayPendingTrips(pendingTrips) {
@@ -168,7 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       const formattedTrips = pendingTrips.map(trip => {
         const destination = allDestinationData.find(dest => dest.id === trip.destinationID);
-        return `${destination.destination}, for ${trip.duration} days, ${trip.travelers} traveler(s), on ${trip.date}`;
+        return destination ? `${destination.destination}, for ${trip.duration} days, ${trip.travelers} traveler(s), on ${trip.date}` : `Unknown destination, for ${trip.duration} days, ${trip.travelers} traveler(s), on ${trip.date}`;
       });
 
       let tripText = '';
@@ -187,6 +212,44 @@ document.addEventListener('DOMContentLoaded', () => {
         pendingTripsImageElement.style.backgroundImage = `url('${destination.image}')`;
         pendingDestinationOverlayElement.innerText = destination.destination;
         pendingTripsImageElement.style.display = 'block';
+      }
+    }
+  }
+
+  function displayUpcomingTrips(upcomingTrips) {
+    const upcomingTripsElement = document.querySelector('.content-left-bottom .text');
+    const upcomingTripImageElement = document.querySelector('.content-left-bottom .trip-image');
+    const upcomingDestinationOverlayElement = document.querySelector('.content-left-bottom .destination-overlay');
+
+    if (upcomingTrips.length === 0) {
+      upcomingTripsElement.innerText = "You have no upcoming trips";
+      upcomingTripImageElement.style.display = 'none';
+    } else {
+      const sortedTrips = upcomingTrips.sort((a, b) => new Date(a.date) - new Date(b.date));
+      const formattedTrips = sortedTrips.map(trip => {
+        const destination = allDestinationData.find(dest => dest.id === trip.destinationID);
+        return destination ? `${destination.destination} on ${trip.date}` : `Unknown destination on ${trip.date}`;
+      });
+
+      let tripText = '';
+      if (formattedTrips.length === 1) {
+        tripText = formattedTrips[0];
+      } else if (formattedTrips.length === 2) {
+        tripText = formattedTrips.join(' and ');
+      } else {
+        tripText = formattedTrips.slice(0, -1).join(', ') + ', and ' + formattedTrips.slice(-1);
+      }
+
+      upcomingTripsElement.innerText = tripText;
+      const nextUpcomingTrip = sortedTrips[0];
+      const destination = allDestinationData.find(dest => dest.id === nextUpcomingTrip.destinationID);
+      if (destination) {
+        upcomingTripImageElement.style.backgroundImage = `url('${destination.image}')`;
+        upcomingDestinationOverlayElement.innerText = destination.destination;
+        upcomingTripImageElement.style.display = 'block';
+      } else {
+        upcomingTripsElement.innerText = "You have no upcoming trips";
+        upcomingTripImageElement.style.display = 'none';
       }
     }
   }
