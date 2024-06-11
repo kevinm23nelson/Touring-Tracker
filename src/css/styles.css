@@ -103,6 +103,56 @@ body {
   background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), 
   url('../images/Travel Photo - Road in Mountains.jpg') center/cover no-repeat;
 }
+/* Add the following to your existing CSS */
+.trip-request-interaction {
+  background-color: #f5f5f5;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.new-trip-input {
+  margin-bottom: 10px;
+}
+
+.new-trip-input label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.new-trip-input input, .new-trip-input select {
+  padding: 10px;
+  font-size: 1em;
+  width: 100%;
+  max-width: 300px;
+}
+
+.new-trip-form button {
+  padding: 10px 20px;
+  background-color: #1eddfb;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.new-trip-form button:hover {
+  background-color: #30b556;
+}
+
+.new-trip-estimate {
+  margin-top: 20px;
+}
+
+#estimated-cost {
+  font-size: 1.2em;
+  font-weight: 600;
+}
 
 .content-left-bottom {
   background-color: #f5f5f5; /* or the specific color you are using */

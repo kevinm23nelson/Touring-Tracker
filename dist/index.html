@@ -18,11 +18,32 @@
         <h2 id="user-greeting">Welcome, User!</h2>
         <div class="content-left-top">
           <h2>Book a Trip Section</h2>
-          <form class="login-form">
-            <input type="text" id="username" placeholder="Username" required>
-          </form>
-          <p class="text">This area can be written/displayed with anything.</p>
-          <a href="#">In Case I Need a Link</a>
+          <section class="trip-request-interaction">
+            <form class="new-trip-form">
+              <section class="new-trip-input">
+                <label for="date-input">Trip Start Date:</label>
+                <input type="date" id="date-input" placeholder="yyyy/mm/dd" min="2020-06-21" max="2025-12-31" required>
+              </section>
+              <section class="new-trip-input">
+                <label for="duration-input">Number of Days:</label>
+                <input type="number" min="3" max="60" id="duration-input" required>
+              </section>
+              <section class="new-trip-input">
+                <label for="travelers-input">Number of Travelers:</label>
+                <input type="number" min="1" max="20" id="travelers-input" required>
+              </section>
+              <section class="new-trip-input">
+                <label for="destination-select">Destination:</label>
+                <select id="destination-select" required>
+                  <option value="">Choose your Destination</option>
+                </select>
+              </section>
+              <button type="button" id="calculate-cost-button">Calculate Cost</button>
+            </form>
+            <section class="new-trip-estimate">
+              <p id="estimated-cost"></p>
+            </section>
+          </section>
         </div>
         <div class="content-left-bottom">
           <h2>Upcoming Trips</h2>
@@ -40,7 +61,6 @@
             <a href="#">See Past Trips</a>
           </div>
           <div class="content-img">
-            <!-- IMAGE -->
             <div class="destination-overlay"></div>
           </div>
         </div>
@@ -50,9 +70,7 @@
             <p class="text">This area can be written/displayed with anything.</p>
             <a href="#">See Your Pending Trips</a>
           </div>
-          <div class="content-img">
-            <!-- IMAGE -->
-          </div>
+          <div class="content-img"></div>
         </div>
         <div class="content-right-bottom">
           <div class="content-text">
@@ -60,9 +78,7 @@
             <p class="text">This area can be written/displayed with anything.</p>
             <a href="#">See Total Amount Spent on Trips</a>
           </div>
-          <div class="content-img">
-            <!-- IMAGE -->
-          </div>
+          <div class="content-img"></div>
         </div>
       </section>
     </div>
