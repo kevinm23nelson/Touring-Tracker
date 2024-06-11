@@ -38,6 +38,11 @@ body {
   color: white; /* Set specified texts to white */
 }
 
+.date-heading {
+  color: white; /* Set date text to white */
+  font-size: 1.2em; /* Smaller than main headings */
+}
+
 .login-view h1 {
   font-size: 60px;
   text-shadow: 5px 10px 5px rgba(0, 0, 0, 0.7);
@@ -323,9 +328,8 @@ body {
   font-weight: 600;
 }
 
-/* Add the following to your existing CSS */
 .error-message {
-  color: rgb(0, 255, 132);
+  color: #555c66;
   font-weight: bold;
   margin-top: 10px;
 }

@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const dashboard = document.querySelector('.dashboard');
   const loginForm = document.querySelector('.login-form');
   const userGreeting = document.getElementById('user-greeting');
+  const todayDateElement = document.getElementById('today-date');
   const destinationSelect = document.getElementById('destination-select');
   const calculateCostButton = document.getElementById('calculate-cost-button');
   const estimatedCostElement = document.getElementById('estimated-cost');
@@ -21,6 +22,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const durationInput = document.getElementById('duration-input');
   const travelersInput = document.getElementById('travelers-input');
   const errorMessageElement = document.getElementById('error-message');
+
+  const today = '2022-06-21';
+  dateInput.value = today;
+  dateInput.min = '2020-01-01';
+  dateInput.max = '2025-12-31';
+
+  todayDateElement.innerText = `Today is June 21, 2022!`;
 
   loginForm.addEventListener('submit', handleLogin);
 
