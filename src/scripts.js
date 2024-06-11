@@ -11,7 +11,6 @@ import { displayPastTrips, displayRecentTripImage, displayTotalCost, displayUpco
 import { addNewTrip } from './apiCalls';
 
 // scripts.js
-// scripts.js
 document.addEventListener('DOMContentLoaded', () => {
   let nextTripId = 204; // Starting point for new trips
 
@@ -70,6 +69,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const upcomingTrips = getUpcomingTrips(travelerId);
         displayUpcomingTrips(upcomingTrips);
+
+        const pendingTrips = allTripData.filter(trip => trip.userID === travelerId && trip.status === 'pending');
+        displayPendingTrips(pendingTrips);
 
         populateDestinations();
         updateNextTripId(); // Update the next trip ID
@@ -174,6 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
           displayPendingTrips(pendingTrips);
           const upcomingTrips = getUpcomingTrips(travelerId);
           displayUpcomingTrips(upcomingTrips);
+          resetForm(); // Reset the form after successful reservation
         });
       })
       .catch(error => {
@@ -182,14 +185,28 @@ document.addEventListener('DOMContentLoaded', () => {
       });
   });
 
+  function resetForm() {
+    dateInput.value = '2022-06-21'; // Reset the date to June 21, 2022
+    durationInput.value = '';
+    travelersInput.value = '';
+    destinationSelect.value = '';
+    estimatedCostElement.innerText = '';
+    errorMessageElement.innerText = '';
+    reserveTripButton.disabled = true;
+    validateForm(); // Ensure the form is validated again
+  }
+
   function displayPendingTrips(pendingTrips) {
     const pendingTripsElement = document.querySelector('.content-right-middle .text');
     const pendingTripsImageElement = document.querySelector('.content-right-middle .content-img');
     const pendingDestinationOverlayElement = document.querySelector('.content-right-middle .destination-overlay');
+    const defaultImageUrl = '../images/Travel Photo - City on Rocky Coast.jpg';
 
     if (pendingTrips.length === 0) {
       pendingTripsElement.innerText = "You have no pending trips";
-      pendingTripsImageElement.style.display = 'none';
+      pendingTripsImageElement.style.backgroundImage = `url('${defaultImageUrl}')`;
+      pendingTripsImageElement.style.display = 'block';
+      pendingDestinationOverlayElement.innerText = '';
     } else {
       const formattedTrips = pendingTrips.map(trip => {
         const destination = allDestinationData.find(dest => dest.id === trip.destinationID);

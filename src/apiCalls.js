@@ -18,7 +18,6 @@ export function fetchAllDestinationData() {
 }
 
 // Post
-// apiCalls.js
 export function addNewTrip(trip) {
   return fetch('http://localhost:3001/api/v1/trips', {
     method: 'POST',
