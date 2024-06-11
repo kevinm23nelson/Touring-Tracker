@@ -1,5 +1,4 @@
-
-import { fetchAllDestinationData, fetchAllTripsData, fetchAllUserData, fetchSingleUserData } from './apiCalls.js';
+import { fetchAllUserData, fetchSingleUserData, fetchAllTripsData, fetchAllDestinationData } from './apiCalls';
 
 let allUsersData = [];
 let allTripData = [];

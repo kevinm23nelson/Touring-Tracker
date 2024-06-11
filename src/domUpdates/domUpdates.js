@@ -1,3 +1,5 @@
+// domUpdates.js
+
 const displayPastTrips = (pastTripsDestinations) => {
   const pastTripsElement = document.querySelector('.content-right-top .content-text p');
   
@@ -19,5 +21,25 @@ const displayRecentTripImage = (recentTrip) => {
   recentTripImageElement.style.backgroundImage = `url('${recentTrip.image}')`;
 };
 
+const displayTotalCost = (totalCost, agentFee, totalWithFee) => {
+  const totalCostElement = document.querySelector('.content-right-bottom .content-text p');
+  totalCostElement.innerText = `Total Cost: $${totalCost}\nAgent Fee: $${agentFee}\nTotal with Fee: $${totalWithFee}`;
+};
+
+const displayUpcomingTrips = (upcomingTrips) => {
+  const upcomingTripsElement = document.querySelector('.content-left-bottom .text');
+  
+  let formattedDestinations;
+  
+  if (upcomingTrips.length === 1) {
+    formattedDestinations = upcomingTrips[0];
+  } else if (upcomingTrips.length === 2) {
+    formattedDestinations = upcomingTrips.join(' and ');
+  } else {
+    formattedDestinations = upcomingTrips.slice(0, -1).join(', ') + ', and ' + upcomingTrips.slice(-1);
+  }
+  
+  upcomingTripsElement.innerText = formattedDestinations;
+};
 
 export { displayPastTrips, displayRecentTripImage, displayTotalCost, displayUpcomingTrips };

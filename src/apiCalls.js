@@ -1,51 +1,20 @@
 // apiCalls.js
+import { fetchData } from './utils';
 
-// Fetch
 export function fetchAllUserData() {
-  return fetch("http://localhost:3001/api/v1/travelers")
-    .then(response => response.json())
-    .then(data => {
-      console.log('allData', data.travelers);
-      return data.travelers;
-    })
-    .catch(error => {
-      console.error('Warning! Problem with fetching all users data:', error);
-    });
+  return fetchData("http://localhost:3001/api/v1/travelers", "travelers");
 }
 
 export function fetchSingleUserData(id) {
-  return fetch(`http://localhost:3001/api/v1/travelers/${id}`)
-    .then(response => response.json())
-    .then(data => {
-      return data;
-    })
-    .catch(error => {
-      console.error('Warning! Problem with fetching single user data:', error);
-    });
+  return fetchData(`http://localhost:3001/api/v1/travelers/${id}`, "travelers");
 }
 
 export function fetchAllTripsData() {
-  return fetch('http://localhost:3001/api/v1/trips')
-    .then(response => response.json())
-    .then(data => {
-      console.log('data trips >>>', data.trips);
-      return data.trips;
-    })
-    .catch(error => {
-      console.error('Warning! Problem with fetching all trips data:', error);
-    });
+  return fetchData('http://localhost:3001/api/v1/trips', "trips");
 }
 
 export function fetchAllDestinationData() {
-  return fetch('http://localhost:3001/api/v1/destinations')
-    .then(response => response.json())
-    .then(data => {
-      console.log('destination data>>', data.destinations);
-      return data.destinations;
-    })
-    .catch(error => {
-      console.error('Warning! Problem with fetching all destinations data:', error);
-    });
+  return fetchData('http://localhost:3001/api/v1/destinations', "destinations");
 }
 
 // Post

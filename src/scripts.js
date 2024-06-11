@@ -24,23 +24,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (validateCredentials(username, password)) {
       const travelerId = extractTravelerId(username);
-      fetchAllData().then(() => {
+      fetchAllData(travelerId).then(() => {
         const user = allUsersData.find(user => user.id === travelerId);
         showDashboard(user);
 
-        travelerPastTrips(travelerId).then(({ pastTripsDestinations, recentDestination }) => {
-          displayPastTrips(pastTripsDestinations);
-          displayRecentTripImage(recentDestination);
-        });
+        const { pastTripsDestinations, recentDestination } = travelerPastTrips(travelerId);
+        displayPastTrips(pastTripsDestinations);
+        displayRecentTripImage(recentDestination);
 
-        calculateAnnualSpend(travelerId).then(totalCost => {
-          const { agentFee, totalWithFee } = calculateTotalWithAgentFee(totalCost);
-          displayTotalCost(totalCost, agentFee, totalWithFee);
-        });
+        const totalCost = calculateAnnualSpend(travelerId);
+        const { agentFee, totalWithFee } = calculateTotalWithAgentFee(totalCost);
+        displayTotalCost(totalCost, agentFee, totalWithFee);
 
-        getUpcomingTrips(travelerId).then(upcomingTrips => {
-          displayUpcomingTrips(upcomingTrips);
-        });
+        const upcomingTrips = getUpcomingTrips(travelerId);
+        displayUpcomingTrips(upcomingTrips);
       });
     } else {
       alert('Invalid username or password');
