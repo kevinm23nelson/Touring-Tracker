@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const dateInput = document.getElementById('date-input');
   const durationInput = document.getElementById('duration-input');
   const travelersInput = document.getElementById('travelers-input');
+  const errorMessageElement = document.getElementById('error-message');
 
   loginForm.addEventListener('submit', handleLogin);
 
@@ -74,31 +75,44 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function validateForm() {
-    if (dateInput.value && durationInput.value >= 3 && travelersInput.value >= 1 && destinationSelect.value) {
-      calculateCostButton.disabled = false;
-    } else {
-      calculateCostButton.disabled = true;
+    let errorMessage = '';
+    if (!dateInput.value) {
+      errorMessage = 'Please enter a trip start to begin your estimate.';
+    } else if (durationInput.value < 3) {
+      errorMessage = 'Please enter a duration of at least 3 days.';
+    } else if (travelersInput.value < 1) {
+      errorMessage = 'Please enter the number of travelers (at least 1).';
+    } else if (!destinationSelect.value) {
+      errorMessage = 'Please select a destination.';
     }
+
+    errorMessageElement.innerText = errorMessage;
+    calculateCostButton.disabled = !!errorMessage;
   }
 
   calculateCostButton.addEventListener('click', () => {
-    const date = dateInput.value;
-    const duration = parseInt(durationInput.value);
-    const travelers = parseInt(travelersInput.value);
-    const destinationId = parseInt(destinationSelect.value);
-
-    const destination = allDestinationData.find(dest => dest.id === destinationId);
-
-    if (destination) {
-      const lodgingCost = destination.estimatedLodgingCostPerDay * duration * travelers;
-      const flightsCost = destination.estimatedFlightCostPerPerson * travelers;
-      const totalCost = lodgingCost + flightsCost;
-      const agentFee = totalCost * 0.1;
-      const totalWithFee = totalCost + agentFee;
-
-      estimatedCostElement.innerText = `Estimated Cost: $${totalCost.toFixed(2)}\nAgent Fee: $${agentFee.toFixed(2)}\nTotal with Fee: $${totalWithFee.toFixed(2)}`;
+    if (calculateCostButton.disabled) {
+      validateForm();
     } else {
-      estimatedCostElement.innerText = 'Please select a valid destination.';
+      const date = dateInput.value;
+      const duration = parseInt(durationInput.value);
+      const travelers = parseInt(travelersInput.value);
+      const destinationId = parseInt(destinationSelect.value);
+
+      const destination = allDestinationData.find(dest => dest.id === destinationId);
+
+      if (destination) {
+        const lodgingCost = destination.estimatedLodgingCostPerDay * duration * travelers;
+        const flightsCost = destination.estimatedFlightCostPerPerson * travelers;
+        const totalCost = lodgingCost + flightsCost;
+        const agentFee = totalCost * 0.1;
+        const totalWithFee = totalCost + agentFee;
+
+        estimatedCostElement.innerText = `Estimated Cost: $${totalCost.toFixed(2)}\nAgent Fee: $${agentFee.toFixed(2)}\nTotal with Fee: $${totalWithFee.toFixed(2)}`;
+        errorMessageElement.innerText = ''; // Clear error message if calculation is successful
+      } else {
+        estimatedCostElement.innerText = 'Please select a valid destination.';
+      }
     }
   });
 

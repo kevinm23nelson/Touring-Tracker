@@ -322,3 +322,10 @@ body {
   font-size: 1.2em;
   font-weight: 600;
 }
+
+/* Add the following to your existing CSS */
+.error-message {
+  color: rgb(0, 255, 132);
+  font-weight: bold;
+  margin-top: 10px;
+}
