@@ -2,8 +2,8 @@
   <section class="login-view">
     <div class="border-container">
       <div class="content-left">
-        <h2>An Endless World of Possibilities</h2>
-        <h1>Touring Tracker</h1>
+        <h2 class="main-heading">An Endless World of Possibilities</h2>
+        <h1 class="main-heading">Touring Tracker</h1>
         <form class="login-form">
           <input type="text" id="username" placeholder="Username" required>
           <input type="password" id="password" placeholder="Password" required>
@@ -15,14 +15,14 @@
   <section class="dashboard hidden">
     <div class="wrapper">
       <section class="content-left">
-        <h2 id="user-greeting">Welcome, User!</h2>
+        <h2 id="user-greeting" class="main-heading">Welcome, User!</h2>
         <div class="content-left-top">
-          <h2>Book a Trip Section</h2>
+          <h2 class="main-heading">Book a Trip</h2>
           <section class="trip-request-interaction">
             <form class="new-trip-form">
               <section class="new-trip-input">
                 <label for="date-input">Trip Start Date:</label>
-                <input type="date" id="date-input" placeholder="yyyy/mm/dd" min="2020-06-21" max="2025-12-31" required>
+                <input type="date" id="date-input" placeholder="yyyy/mm/dd" min="2020-01-01" max="2025-12-31" required>
               </section>
               <section class="new-trip-input">
                 <label for="duration-input">Number of Days:</label>
@@ -38,7 +38,7 @@
                   <option value="">Choose your Destination</option>
                 </select>
               </section>
-              <button type="button" id="calculate-cost-button">Calculate Cost</button>
+              <button type="button" id="calculate-cost-button" disabled>Calculate Cost</button>
             </form>
             <section class="new-trip-estimate">
               <p id="estimated-cost"></p>
@@ -61,6 +61,7 @@
             <a href="#">See Past Trips</a>
           </div>
           <div class="content-img">
+            <!-- IMAGE -->
             <div class="destination-overlay"></div>
           </div>
         </div>

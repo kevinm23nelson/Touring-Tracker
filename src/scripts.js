@@ -17,8 +17,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const destinationSelect = document.getElementById('destination-select');
   const calculateCostButton = document.getElementById('calculate-cost-button');
   const estimatedCostElement = document.getElementById('estimated-cost');
+  const dateInput = document.getElementById('date-input');
+  const durationInput = document.getElementById('duration-input');
+  const travelersInput = document.getElementById('travelers-input');
 
   loginForm.addEventListener('submit', handleLogin);
+
+  // Add event listeners to form inputs
+  dateInput.addEventListener('input', validateForm);
+  durationInput.addEventListener('input', validateForm);
+  travelersInput.addEventListener('input', validateForm);
+  destinationSelect.addEventListener('input', validateForm);
 
   function handleLogin(event) {
     event.preventDefault();
@@ -64,10 +73,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  function validateForm() {
+    if (dateInput.value && durationInput.value >= 3 && travelersInput.value >= 1 && destinationSelect.value) {
+      calculateCostButton.disabled = false;
+    } else {
+      calculateCostButton.disabled = true;
+    }
+  }
+
   calculateCostButton.addEventListener('click', () => {
-    const date = document.getElementById('date-input').value;
-    const duration = parseInt(document.getElementById('duration-input').value);
-    const travelers = parseInt(document.getElementById('travelers-input').value);
+    const date = dateInput.value;
+    const duration = parseInt(durationInput.value);
+    const travelers = parseInt(travelersInput.value);
     const destinationId = parseInt(destinationSelect.value);
 
     const destination = allDestinationData.find(dest => dest.id === destinationId);
@@ -84,4 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
       estimatedCostElement.innerText = 'Please select a valid destination.';
     }
   });
+
+  // Initial validation check
+  validateForm();
 });
