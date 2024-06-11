@@ -1,5 +1,3 @@
-// domUpdates.js
-
 const displayPastTrips = (pastTripsDestinations) => {
   const pastTripsElement = document.querySelector('.content-right-top .content-text p');
   
@@ -31,7 +29,9 @@ const displayUpcomingTrips = (upcomingTrips) => {
   
   let formattedDestinations;
   
-  if (upcomingTrips.length === 1) {
+  if (upcomingTrips.length === 0) {
+    formattedDestinations = "You have no upcoming trips";
+  } else if (upcomingTrips.length === 1) {
     formattedDestinations = upcomingTrips[0];
   } else if (upcomingTrips.length === 2) {
     formattedDestinations = upcomingTrips.join(' and ');

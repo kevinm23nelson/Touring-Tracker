@@ -55,6 +55,10 @@ const getUpcomingTrips = (travelerId, tripsArray = allTripData, destinationsArra
 
   const userTrips = tripsArray.filter(trip => trip.userID === travelerId && new Date(trip.date) >= startDate && new Date(trip.date) <= endDate);
 
+  if (userTrips.length === 0) {
+    return [];
+  }
+
   const upcomingTrips = userTrips.map(trip => {
     const destination = destinationsArray.find(destination => destination.id === trip.destinationID);
     return destination ? destination.destination : '';
