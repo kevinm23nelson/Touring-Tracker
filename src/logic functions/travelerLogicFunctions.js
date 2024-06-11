@@ -49,7 +49,7 @@ const calculateTotalWithAgentFee = (totalCost) => {
   return { totalCost, agentFee, totalWithFee };
 };
 
-const getUpcomingTrips = (travelerId, tripsArray = allTripData, destinationsArray = allDestinationData) => {
+const getUpcomingTrips = (travelerId, tripsArray = allTripData, destinationsArray = allDestinationData, returnFormat = 'objects') => {
   const startDate = new Date('2022/06/21');
   const endDate = new Date('2023/01/01');
 
@@ -61,8 +61,12 @@ const getUpcomingTrips = (travelerId, tripsArray = allTripData, destinationsArra
 
   const upcomingTrips = userTrips.map(trip => {
     const destination = destinationsArray.find(destination => destination.id === trip.destinationID);
-    return destination ? destination.destination : '';
-  }).filter(destination => destination !== '');
+    return destination ? { destination: destination.destination, date: trip.date, image: destination.image } : null;
+  }).filter(trip => trip !== null);
+
+  if (returnFormat === 'destinations') {
+    return upcomingTrips.map(trip => trip.destination);
+  }
 
   return upcomingTrips;
 };

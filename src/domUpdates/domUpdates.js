@@ -26,20 +26,28 @@ const displayTotalCost = (totalCost, agentFee, totalWithFee) => {
 
 const displayUpcomingTrips = (upcomingTrips) => {
   const upcomingTripsElement = document.querySelector('.content-left-bottom .text');
-  
-  let formattedDestinations;
+  const upcomingTripImageElement = document.querySelector('.content-left-bottom .trip-image');
   
   if (upcomingTrips.length === 0) {
-    formattedDestinations = "You have no upcoming trips";
-  } else if (upcomingTrips.length === 1) {
-    formattedDestinations = upcomingTrips[0];
-  } else if (upcomingTrips.length === 2) {
-    formattedDestinations = upcomingTrips.join(' and ');
+    upcomingTripsElement.innerText = "You have no upcoming trips";
+    upcomingTripImageElement.style.display = 'none';
   } else {
-    formattedDestinations = upcomingTrips.slice(0, -1).join(', ') + ', and ' + upcomingTrips.slice(-1);
+    const sortedTrips = upcomingTrips.sort((a, b) => new Date(a.date) - new Date(b.date));
+    const formattedTrips = sortedTrips.map(trip => `${trip.destination} on ${trip.date}`);
+    
+    let tripText = '';
+    if (formattedTrips.length === 1) {
+      tripText = formattedTrips[0];
+    } else if (formattedTrips.length === 2) {
+      tripText = formattedTrips.join(' and ');
+    } else {
+      tripText = formattedTrips.slice(0, -1).join(', ') + ', and ' + formattedTrips.slice(-1);
+    }
+    
+    upcomingTripsElement.innerText = tripText;
+    upcomingTripImageElement.src = sortedTrips[0].image;
+    upcomingTripImageElement.style.display = 'block';
   }
-  
-  upcomingTripsElement.innerText = formattedDestinations;
 };
 
 export { displayPastTrips, displayRecentTripImage, displayTotalCost, displayUpcomingTrips };
