@@ -1,27 +1,36 @@
-function fetchData(url, options = {}) {
-  return fetch(url, options)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      return response.json();
+// apiCalls.js
+import { fetchData } from './utils';
+
+export function fetchAllUserData() {
+  return fetchData("http://localhost:3001/api/v1/travelers", "travelers");
+}
+
+export function fetchSingleUserData(id) {
+  return fetchData(`http://localhost:3001/api/v1/travelers/${id}`, "travelers");
+}
+
+export function fetchAllTripsData() {
+  return fetchData('http://localhost:3001/api/v1/trips', "trips");
+}
+
+export function fetchAllDestinationData() {
+  return fetchData('http://localhost:3001/api/v1/destinations', "destinations");
+}
+
+// Post
+export function addNewTrip(trip) {
+  return fetch('http://localhost:3001/api/v1/trips', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(trip)
+  })
+    .then(response => response.json())
+    .then(data => {
+      return data;
     })
     .catch(error => {
-      console.error('Error fetching data:', error);
-      throw error; 
+      console.error('Error adding new trip:', error);
     });
 }
-
-function loadData() {
-  return Promise.all([
-    fetchData('http://localhost:3001/api/v1/travelers'),
-    fetchData('http://localhost:3001/api/v1/trips'),
-    fetchData('http://localhost:3001/api/v1/destinations')
-  ]).then(([travelers, trips, destinations]) => ({
-    travelers,
-    trips,
-    destinations
-  }));
-}
-
-export { fetchData, loadData };
