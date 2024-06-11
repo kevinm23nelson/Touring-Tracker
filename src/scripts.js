@@ -8,8 +8,11 @@ import { fetchAllData, allTripData, allDestinationData, allUsersData, allSingleU
 import { validateCredentials, extractTravelerId } from './logic functions/loginLogicFunctions';
 import { travelerPastTrips, calculateAnnualSpend, calculateTotalWithAgentFee, getUpcomingTrips } from './logic functions/travelerLogicFunctions';
 import { displayPastTrips, displayRecentTripImage, displayTotalCost, displayUpcomingTrips } from './domUpdates/domUpdates';
+import { addNewTrip } from './apiCalls';
 
 document.addEventListener('DOMContentLoaded', () => {
+  let nextTripId = 204; // Start new trips with ID 204
+
   const loginView = document.querySelector('.login-view');
   const dashboard = document.querySelector('.dashboard');
   const loginForm = document.querySelector('.login-form');
@@ -17,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const todayDateElement = document.getElementById('today-date');
   const destinationSelect = document.getElementById('destination-select');
   const calculateCostButton = document.getElementById('calculate-cost-button');
+  const reserveTripButton = document.getElementById('reserve-trip-button');
   const estimatedCostElement = document.getElementById('estimated-cost');
   const dateInput = document.getElementById('date-input');
   const durationInput = document.getElementById('duration-input');
@@ -96,6 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     errorMessageElement.innerText = errorMessage;
     calculateCostButton.disabled = !!errorMessage;
+    reserveTripButton.disabled = !!errorMessage || !estimatedCostElement.innerText;
   }
 
   calculateCostButton.addEventListener('click', () => {
@@ -118,11 +123,73 @@ document.addEventListener('DOMContentLoaded', () => {
 
         estimatedCostElement.innerText = `Estimated Cost: $${totalCost.toFixed(2)}\nAgent Fee: $${agentFee.toFixed(2)}\nTotal with Fee: $${totalWithFee.toFixed(2)}`;
         errorMessageElement.innerText = ''; // Clear error message if calculation is successful
+        reserveTripButton.disabled = false; // Enable the Reserve Trip button
       } else {
         estimatedCostElement.innerText = 'Please select a valid destination.';
+        reserveTripButton.disabled = true;
       }
     }
   });
+
+  reserveTripButton.addEventListener('click', () => {
+    const travelerId = extractTravelerId(document.getElementById('username').value);
+    const date = dateInput.value.split('-').join('/');
+    const duration = parseInt(durationInput.value);
+    const travelers = parseInt(travelersInput.value);
+    const destinationId = parseInt(destinationSelect.value);
+
+    const newTrip = {
+      id: nextTripId++, // Increment the trip ID
+      userID: travelerId,
+      destinationID: destinationId,
+      travelers: travelers,
+      date: date,
+      duration: duration,
+      status: 'pending',
+      suggestedActivities: []
+    };
+
+    addNewTrip(newTrip).then(() => {
+      fetchAllData(travelerId).then(() => {
+        const pendingTrips = allTripData.filter(trip => trip.userID === travelerId && trip.status === 'pending');
+        displayPendingTrips(pendingTrips);
+      });
+    });
+  });
+
+  function displayPendingTrips(pendingTrips) {
+    const pendingTripsElement = document.querySelector('.content-right-middle .text');
+    const pendingTripsImageElement = document.querySelector('.content-right-middle .content-img');
+    const pendingDestinationOverlayElement = document.querySelector('.content-right-middle .destination-overlay');
+
+    if (pendingTrips.length === 0) {
+      pendingTripsElement.innerText = "You have no pending trips";
+      pendingTripsImageElement.style.display = 'none';
+    } else {
+      const formattedTrips = pendingTrips.map(trip => {
+        const destination = allDestinationData.find(dest => dest.id === trip.destinationID);
+        return `${destination.destination}, for ${trip.duration} days, ${trip.travelers} traveler(s), on ${trip.date}`;
+      });
+
+      let tripText = '';
+      if (formattedTrips.length === 1) {
+        tripText = formattedTrips[0];
+      } else if (formattedTrips.length === 2) {
+        tripText = formattedTrips.join(' and ');
+      } else {
+        tripText = formattedTrips.slice(0, -1).join(', ') + ', and ' + formattedTrips.slice(-1);
+      }
+
+      pendingTripsElement.innerText = tripText;
+      const latestPendingTrip = pendingTrips[pendingTrips.length - 1];
+      const destination = allDestinationData.find(dest => dest.id === latestPendingTrip.destinationID);
+      if (destination) {
+        pendingTripsImageElement.style.backgroundImage = `url('${destination.image}')`;
+        pendingDestinationOverlayElement.innerText = destination.destination;
+        pendingTripsImageElement.style.display = 'block';
+      }
+    }
+  }
 
   // Initial validation check
   validateForm();
