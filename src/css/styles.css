@@ -125,9 +125,16 @@ body {
 
 .content-left-bottom .trip-image {
   width: 100%;
-  height: auto;
+  max-width: 600px; /* Adjust to make the image larger */
+  height: 300px; /* Adjust to make the image larger */
   margin-top: 10px;
-  max-width: 400px; /* Adjust as necessary */
+  object-fit: cover;
+}
+
+.content-right .content-img {
+  width: 100%;
+  height: 200px; /* Ensure this matches the height of the upcoming trip image */
+  object-fit: cover;
 }
 
 .content-left h1, .content-right h1 {
