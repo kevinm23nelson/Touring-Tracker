@@ -17,9 +17,7 @@ To view and use the application, follow these steps:
 
 Clone the repository:
 
-sh
-Copy code
-git clone git@github.com:your-username/travel-tracker.git
+```git clone git@github.com:your-username/travel-tracker.git```
 Navigate to the project directory:
 
 sh
