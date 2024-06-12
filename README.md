@@ -18,35 +18,31 @@ To view and use the application, follow these steps:
 Clone the repository:
 
 ```git clone git@github.com:your-username/travel-tracker.git```
+
 Navigate to the project directory:
 
-sh
-Copy code
-cd travel-tracker
+```cd travel-tracker```
 Install npm dependencies:
 
-sh
-Copy code
-npm install
+
+```npm install```
+
 Install Webpack:
 
-sh
-Copy code
-npm install webpack webpack-cli --save-dev
+```npm install webpack webpack-cli --save-dev```
+
 Start the development server:
 
-sh
-Copy code
 npm start
 Open localhost:8080 in your browser to view the application.
 
 Running Tests
 To view the test suite, run:
 
-sh
-Copy code
-npm test
-Skills Utilized
+```npm test```
+
+Skills Utilized:
+
 OOP using ES6 classes: Organized the codebase with Object-Oriented Programming principles.
 Array Iterator Methods: Leveraged methods like .map, .filter, and .reduce for data manipulation.
 Test Driven Development: Designed the application by writing tests before implementing functionality.
