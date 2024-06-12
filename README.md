@@ -12,7 +12,8 @@ Project Overview:
 
 Travel Tracker is an application designed to help users track their travel plans, including past, upcoming, and pending trips. It allows users to book new trips, calculate costs, and view detailed information about their travels.
 
-Setup & Installation
+Setup & Installation:
+
 To view and use the application, follow these steps:
 
 Clone the repository:
