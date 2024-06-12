@@ -81,14 +81,14 @@ describe('travelerLogicFunctions', () => {
   describe('getUpcomingTrips', () => {
     it('should return upcoming trips within the date range', () => {
       const travelerId = 3;
-      const result = getUpcomingTrips(travelerId, tripsData, destinationsData, 'destinations'); // Pass 'destinations' to return destinations only
+      const result = getUpcomingTrips(travelerId, tripsData, destinationsData, 'destinations'); 
       const expectedUpcomingTrips = ['Sydney, Austrailia'];
       expect(result).to.deep.equal(expectedUpcomingTrips);
     });
 
     it('should return an empty array if there are no upcoming trips within the date range', () => {
       const travelerId = 1;
-      const result = getUpcomingTrips(travelerId, tripsData, destinationsData, 'destinations'); // Pass 'destinations' to return destinations only
+      const result = getUpcomingTrips(travelerId, tripsData, destinationsData, 'destinations'); 
       expect(result).to.deep.equal([]);
     });
   });

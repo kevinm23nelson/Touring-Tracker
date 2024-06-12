@@ -65,16 +65,16 @@ body {
   color: #fff;
   border: none;
   cursor: pointer;
-  font-weight: bold; /* Make the text bold for better readability */
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Add a subtle shadow for improved legibility */
+  font-weight: bold; 
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); 
 }
 
 .login-form button:hover {
-  background-color: #165abc; /* Darker shade for hover state */
+  background-color: #165abc; 
 }
 
 .login-form button:hover {
-  background-color: #1699c7; /* Even darker blue shade for hover effect */
+  background-color: #1699c7; 
 }
 
 .hidden {
@@ -124,7 +124,7 @@ body {
 }
 
 .content-left-top {
-  margin-bottom: 40px; /* Add space between sections */
+  margin-bottom: 40px; 
 }
 
 .content-left-bottom {
@@ -362,7 +362,7 @@ body {
   margin-top: 10px;
 }
 
-/* Ensure the existing styles are applied correctly */
+
 .content-left-bottom .destination-overlay,
 .content-right-top .destination-overlay {
   position: absolute;
@@ -381,7 +381,7 @@ button:disabled {
   cursor: not-allowed; 
 }
 
-/* Add keyframes for animations */
+
 @keyframes fadeInFromLeft {
   from {
     opacity: 0;
@@ -413,7 +413,7 @@ button:disabled {
   }
 }
 
-/* Add animation classes */
+
 .fade-in-left {
   animation: fadeInFromLeft 1s ease-in-out;
 }
@@ -426,11 +426,11 @@ button:disabled {
   animation: fadeIn 1s ease-in-out;
 }
 
-/* Add styles for login button to improve contrast */
+
 .login-form button {
   padding: 10px;
   background-color: #1eddfb;
-  color: #000; /* Changed to black for better contrast */
+  color: #000; 
   border: none;
   cursor: pointer;
 }

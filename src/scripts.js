@@ -11,7 +11,7 @@ import { displayPastTrips, displayRecentTripImage, displayTotalCost, displayUpco
 import { addNewTrip } from './apiCalls';
 
 document.addEventListener('DOMContentLoaded', () => {
-  let nextTripId = 204; // Starting point for new trips
+  let nextTripId = 204;
 
   const loginView = document.querySelector('.login-view');
   const dashboard = document.querySelector('.dashboard');
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
         displayPendingTrips(pendingTrips);
 
         populateDestinations();
-        updateNextTripId(); // Update the next trip ID
+        updateNextTripId(); 
       });
     } else {
       alert('Invalid username or password');
@@ -149,8 +149,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const totalWithFee = totalCost + agentFee;
 
         estimatedCostElement.innerText = `Estimated Cost: $${totalCost.toFixed(2)}\nAgent Fee: $${agentFee.toFixed(2)}\nTotal with Fee: $${totalWithFee.toFixed(2)}`;
-        errorMessageElement.innerText = ''; // Clear error message if calculation is successful
-        reserveTripButton.disabled = false; // Enable the Reserve Trip button
+        errorMessageElement.innerText = ''; 
+        reserveTripButton.disabled = false; 
       } else {
         estimatedCostElement.innerText = 'Please select a valid destination.';
         reserveTripButton.disabled = true;
@@ -204,7 +204,5 @@ document.addEventListener('DOMContentLoaded', () => {
     reserveTripButton.disabled = true;
     validateForm(); 
   }
-
-  // Initial validation check
   validateForm();
 });
