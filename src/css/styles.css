@@ -17,7 +17,7 @@ body {
 }
 
 .login-view {
-  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), 
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), 
   url('../images/Travel Photo - Road in Mountains.jpg') center/cover no-repeat;
   display: flex;
   justify-content: center;
@@ -35,12 +35,12 @@ body {
 }
 
 .main-heading {
-  color: white; /* Set specified texts to white */
+  color: white; 
 }
 
 .date-heading {
-  color: white; /* Set date text to white */
-  font-size: 1.2em; /* Smaller than main headings */
+  color: white;
+  font-size: 1.2em; 
 }
 
 .login-view h1 {
@@ -61,10 +61,16 @@ body {
 
 .login-form button {
   padding: 10px;
-  background-color: #1eddfb;
-  color: #fff;
+  background-color: #1a73e8; /* Adjusted to a darker blue for better contrast */
+  color: #fff; /* White text for high contrast */
   border: none;
   cursor: pointer;
+  font-weight: bold; /* Make the text bold for better readability */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Add a subtle shadow for improved legibility */
+}
+
+.login-form button:hover {
+  background-color: #165abc; /* Darker shade for hover state */
 }
 
 .hidden {
@@ -97,7 +103,7 @@ body {
 .content-left, .content-right {
   min-height: 100vh;
   padding: 30px;
-  color: #555c66; /* Adjust text color for readability */
+  color: #555c66; 
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -118,31 +124,33 @@ body {
 }
 
 .content-left-bottom {
-  background-color: #f5f5f5; /* or the specific color you are using */
+  background-color: #f5f5f5; 
   padding: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  text-align: center; /* Center the text */
+  text-align: center; 
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center child elements */
+  align-items: center; 
 }
 
 .content-left-bottom .text {
-  color: #333; /* Adjust text color for readability */
-  margin-bottom: 10px; /* Add some space between text and image */
+  color: #333; 
+  margin-bottom: 10px; 
 }
 
 .content-left-bottom h2 {
-  color: #222; /* Adjust heading color */
+  color: #222;
 }
 
 .content-left-bottom .trip-image {
   width: 100%;
-  max-width: 600px; /* Adjust to make the image larger */
-  height: 300px; /* Adjust to make the image larger */
+  max-width: 600px; 
+  height: 300px;
   margin-top: 10px;
   object-fit: cover;
   position: relative;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .content-left-bottom .destination-overlay,
@@ -160,7 +168,7 @@ body {
 
 .content-right .content-img {
   width: 100%;
-  height: 200px; /* Ensure this matches the height of the upcoming trip image */
+  height: 200px;
   object-fit: cover;
 }
 
@@ -173,13 +181,13 @@ body {
 .content-right-top .content-img {
   position: relative;
   width: 100%;
-  height: 200px; /* Adjust as necessary */
+  height: 200px;
   background-size: cover;
   background-position: center;
   margin-top: 10px;
   display: flex;
-  align-items: flex-end; /* Align text towards the bottom */
-  justify-content: center; /* Center text horizontally */
+  align-items: flex-end; 
+  justify-content: center; 
 }
 
 .content-right-top, .content-right-middle, .content-right-bottom {
@@ -204,8 +212,8 @@ body {
 }
 .content-right-middle .content-img {
   width: 100%;
-  height: 400px; /* Ensure this matches the height of the upcoming trip image */
-  position: relative; /* Ensure positioning relative to place overlay correctly */
+  height: 400px; 
+  position: relative; 
 }
 
 .content-right-middle .destination-overlay {
@@ -221,13 +229,13 @@ body {
 }
 
 .content-text {
-  color: #555c66; /* Adjust text color for readability */
+  color: #555c66; 
   background-color: #fff;
   padding: 30px;
   display: flex;
   flex-direction: column;
-  align-items: center;  /* Align items to the center horizontally */
-  text-align: center;  /* Center text */
+  align-items: center;  
+  text-align: center; 
   margin: 20px 0;
 }
 
@@ -292,7 +300,6 @@ body {
   }
 }
 
-/* Additional Styles for New Trip Form */
 .trip-request-interaction {
   background-color: #f5f5f5;
   padding: 20px;
@@ -312,7 +319,7 @@ body {
   display: block;
   font-weight: 500;
   margin-bottom: 5px;
-  color: #555c66; /* Match text color */
+  color: #555c66;
 }
 
 .new-trip-input input, .new-trip-input select {
@@ -329,7 +336,7 @@ body {
   border: none;
   cursor: pointer;
   margin-top: 10px;
-  font-size: 1.2em; /* Increase text size */
+  font-size: 1.2em;
 }
 
 .new-trip-form button:hover {
@@ -351,7 +358,6 @@ body {
   margin-top: 10px;
 }
 
-/* Ensure the existing styles are applied correctly */
 .content-left-bottom .destination-overlay,
 .content-right-top .destination-overlay {
   position: absolute;
@@ -363,4 +369,63 @@ body {
   padding: 5px 10px;
   border-radius: 5px;
   text-align: center;
+}
+
+button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed; 
+}
+
+/* Add keyframes for animations */
+@keyframes fadeInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Add animation classes */
+.fade-in-left {
+  animation: fadeInFromLeft 1s ease-in-out;
+}
+
+.fade-in-right {
+  animation: fadeInFromRight 1s ease-in-out;
+}
+
+.fade-in {
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* Add styles for login button to improve contrast */
+.login-form button {
+  padding: 10px;
+  background-color: #1eddfb;
+  color: #000; /* Changed to black for better contrast */
+  border: none;
+  cursor: pointer;
 }
