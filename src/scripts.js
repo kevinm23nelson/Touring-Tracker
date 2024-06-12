@@ -7,10 +7,9 @@ import './images/Travel Photo - City on Rocky Coast.jpg';
 import { fetchAllData, allTripData, allDestinationData, allUsersData, allSingleUserData } from './startData';
 import { validateCredentials, extractTravelerId } from './logic functions/loginLogicFunctions';
 import { travelerPastTrips, calculateAnnualSpend, calculateTotalWithAgentFee, getUpcomingTrips } from './logic functions/travelerLogicFunctions';
-import { displayPastTrips, displayRecentTripImage, displayTotalCost, displayUpcomingTrips } from './domUpdates/domUpdates';
+import { displayPastTrips, displayRecentTripImage, displayTotalCost, displayUpcomingTrips, displayPendingTrips } from './domUpdates/domUpdates';
 import { addNewTrip } from './apiCalls';
 
-// scripts.js
 document.addEventListener('DOMContentLoaded', () => {
   let nextTripId = 204; // Starting point for new trips
 
@@ -52,6 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const travelerId = extractTravelerId(username);
       fetchAllData(travelerId).then(() => {
         console.log('All Users Data:', allUsersData); // Log all users data
+        console.log('All Single User Data:', allSingleUserData); // Log single user data
         const user = allUsersData.find(user => user.id === travelerId);
         if (!user) {
           console.error(`User with ID ${travelerId} not found.`);
@@ -194,81 +194,6 @@ document.addEventListener('DOMContentLoaded', () => {
     errorMessageElement.innerText = '';
     reserveTripButton.disabled = true;
     validateForm(); // Ensure the form is validated again
-  }
-
-  function displayPendingTrips(pendingTrips) {
-    const pendingTripsElement = document.querySelector('.content-right-middle .text');
-    const pendingTripsImageElement = document.querySelector('.content-right-middle .content-img');
-    const pendingDestinationOverlayElement = document.querySelector('.content-right-middle .destination-overlay');
-    const defaultImageUrl = '../images/Travel Photo - City on Rocky Coast.jpg';
-
-    if (pendingTrips.length === 0) {
-      pendingTripsElement.innerText = "You have no pending trips";
-      pendingTripsImageElement.style.backgroundImage = `url('${defaultImageUrl}')`;
-      pendingTripsImageElement.style.display = 'block';
-      pendingDestinationOverlayElement.innerText = '';
-    } else {
-      const formattedTrips = pendingTrips.map(trip => {
-        const destination = allDestinationData.find(dest => dest.id === trip.destinationID);
-        return destination ? `${destination.destination}, for ${trip.duration} days, ${trip.travelers} traveler(s), on ${trip.date}` : `Unknown destination, for ${trip.duration} days, ${trip.travelers} traveler(s), on ${trip.date}`;
-      });
-
-      let tripText = '';
-      if (formattedTrips.length === 1) {
-        tripText = formattedTrips[0];
-      } else if (formattedTrips.length === 2) {
-        tripText = formattedTrips.join(' and ');
-      } else {
-        tripText = formattedTrips.slice(0, -1).join(', ') + ', and ' + formattedTrips.slice(-1);
-      }
-
-      pendingTripsElement.innerText = tripText;
-      const latestPendingTrip = pendingTrips[pendingTrips.length - 1];
-      const destination = allDestinationData.find(dest => dest.id === latestPendingTrip.destinationID);
-      if (destination) {
-        pendingTripsImageElement.style.backgroundImage = `url('${destination.image}')`;
-        pendingDestinationOverlayElement.innerText = destination.destination;
-        pendingTripsImageElement.style.display = 'block';
-      }
-    }
-  }
-
-  function displayUpcomingTrips(upcomingTrips) {
-    const upcomingTripsElement = document.querySelector('.content-left-bottom .text');
-    const upcomingTripImageElement = document.querySelector('.content-left-bottom .trip-image');
-    const upcomingDestinationOverlayElement = document.querySelector('.content-left-bottom .destination-overlay');
-
-    if (upcomingTrips.length === 0) {
-      upcomingTripsElement.innerText = "You have no upcoming trips";
-      upcomingTripImageElement.style.display = 'none';
-    } else {
-      const sortedTrips = upcomingTrips.sort((a, b) => new Date(a.date) - new Date(b.date));
-      const formattedTrips = sortedTrips.map(trip => {
-        const destination = allDestinationData.find(dest => dest.id === trip.destinationID);
-        return destination ? `${destination.destination} on ${trip.date}` : `Unknown destination on ${trip.date}`;
-      });
-
-      let tripText = '';
-      if (formattedTrips.length === 1) {
-        tripText = formattedTrips[0];
-      } else if (formattedTrips.length === 2) {
-        tripText = formattedTrips.join(' and ');
-      } else {
-        tripText = formattedTrips.slice(0, -1).join(', ') + ', and ' + formattedTrips.slice(-1);
-      }
-
-      upcomingTripsElement.innerText = tripText;
-      const nextUpcomingTrip = sortedTrips[0];
-      const destination = allDestinationData.find(dest => dest.id === nextUpcomingTrip.destinationID);
-      if (destination) {
-        upcomingTripImageElement.style.backgroundImage = `url('${destination.image}')`;
-        upcomingDestinationOverlayElement.innerText = destination.destination;
-        upcomingTripImageElement.style.display = 'block';
-      } else {
-        upcomingTripsElement.innerText = "You have no upcoming trips";
-        upcomingTripImageElement.style.display = 'none';
-      }
-    }
   }
 
   // Initial validation check

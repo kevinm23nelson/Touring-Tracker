@@ -1,5 +1,5 @@
 // utils.js
-export function fetchData(url, key) {
+export function fetchData(url) {
   return fetch(url)
     .then(response => {
       if (!response.ok) {
@@ -8,13 +8,11 @@ export function fetchData(url, key) {
       return response.json();
     })
     .then(data => {
-      if (!data[key] || !Array.isArray(data[key])) {
-        throw new Error(`No ${key} data found or data format incorrect`);
-      }
-      console.log(`Fetched ${key} data:`, data[key]); // Log fetched data
-      return data[key];
+      console.log(`Fetched data from ${url}:`, data); // Log fetched data
+      return data;
     })
     .catch(error => {
-      console.error(`Error fetching ${key} data:`, error);
+      console.error(`Error fetching data from ${url}:`, error);
+      throw error;
     });
 }

@@ -2,19 +2,19 @@
 import { fetchData } from './utils';
 
 export function fetchAllUserData() {
-  return fetchData("http://localhost:3001/api/v1/travelers", "travelers");
+  return fetchData("http://localhost:3001/api/v1/travelers");
 }
 
 export function fetchSingleUserData(id) {
-  return fetchData(`http://localhost:3001/api/v1/travelers/${id}`, "travelers");
+  return fetchData(`http://localhost:3001/api/v1/travelers/${id}`);
 }
 
 export function fetchAllTripsData() {
-  return fetchData('http://localhost:3001/api/v1/trips', "trips");
+  return fetchData('http://localhost:3001/api/v1/trips');
 }
 
 export function fetchAllDestinationData() {
-  return fetchData('http://localhost:3001/api/v1/destinations', "destinations");
+  return fetchData('http://localhost:3001/api/v1/destinations');
 }
 
 // Post
@@ -40,5 +40,3 @@ export function addNewTrip(trip) {
     throw error;
   });
 }
-
-
