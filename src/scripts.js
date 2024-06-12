@@ -186,16 +186,15 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   function resetForm() {
-    dateInput.value = '2022-06-21'; // Reset the date to June 21, 2022
+    dateInput.value = '2022-06-21'; 
     durationInput.value = '';
     travelersInput.value = '';
     destinationSelect.value = '';
     estimatedCostElement.innerText = '';
     errorMessageElement.innerText = '';
     reserveTripButton.disabled = true;
-    validateForm(); // Ensure the form is validated again
+    validateForm(); 
   }
 
-  // Initial validation check
   validateForm();
 });

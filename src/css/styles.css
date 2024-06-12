@@ -61,10 +61,14 @@ body {
 
 .login-form button {
   padding: 10px;
-  background-color: #1eddfb;
+  background-color: #1ab2e5; /* Darker blue shade */
   color: #fff;
   border: none;
   cursor: pointer;
+}
+
+.login-form button:hover {
+  background-color: #1699c7; /* Even darker blue shade for hover effect */
 }
 
 .hidden {
@@ -351,7 +355,7 @@ body {
   margin-top: 10px;
 }
 
-/* Ensure the existing styles are applied correctly */
+
 .content-left-bottom .destination-overlay,
 .content-right-top .destination-overlay {
   position: absolute;
