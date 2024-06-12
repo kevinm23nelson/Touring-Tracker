@@ -18,7 +18,7 @@ To view and use the application, follow these steps:
 
 Clone the repository:
 
-```git clone git@github.com:your-username/travel-tracker.git```
+```git clone git@github.com:kevinm23nelson/touring-tracker.git```
 
 Navigate to the project directory:
 
