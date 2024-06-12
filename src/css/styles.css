@@ -61,10 +61,16 @@ body {
 
 .login-form button {
   padding: 10px;
-  background-color: #4278de;
-  color: #fff;
+  background-color: #1a73e8; /* Adjusted to a darker blue for better contrast */
+  color: #fff; /* White text for high contrast */
   border: none;
   cursor: pointer;
+  font-weight: bold; /* Make the text bold for better readability */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Add a subtle shadow for improved legibility */
+}
+
+.login-form button:hover {
+  background-color: #165abc; /* Darker shade for hover state */
 }
 
 .hidden {
@@ -368,4 +374,58 @@ body {
 button:disabled {
   background-color: #cccccc;
   cursor: not-allowed; 
+}
+
+/* Add keyframes for animations */
+@keyframes fadeInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Add animation classes */
+.fade-in-left {
+  animation: fadeInFromLeft 1s ease-in-out;
+}
+
+.fade-in-right {
+  animation: fadeInFromRight 1s ease-in-out;
+}
+
+.fade-in {
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* Add styles for login button to improve contrast */
+.login-form button {
+  padding: 10px;
+  background-color: #1eddfb;
+  color: #000; /* Changed to black for better contrast */
+  border: none;
+  cursor: pointer;
 }
