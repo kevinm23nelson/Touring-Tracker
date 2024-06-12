@@ -1,12 +1,10 @@
 ![Jun-11-2024 21-18-51](https://github.com/kevinm23nelson/Touring-Tracker/assets/162224908/519632e8-ffc4-40ff-a202-099548f00191)
-<img width="542" alt="Screenshot 2024-06-11 at 9 24 55 PM" src="https://github.com/kevinm23nelson/Touring-Tracker/assets/162224908/0b808819-2be9-4ff7-801d-72d340e7be67">
-<img width="542" alt="Screenshot 2024-06-11 at 9 25 12 PM" src="https://github.com/kevinm23nelson/Touring-Tracker/assets/162224908/e70bca50-ac58-4b8e-9a38-d506209c6588">
+<img width="542" alt="Screenshot 2024-06-11 at 9 24 55 PM" src="https://github.com/kevinm23nelson/Touring-Tracker/assets/162224908/0b808819-2be9-4ff7-801d-72d340e7be67"> <img width="542" alt="Screenshot 2024-06-11 at 9 25 12 PM" src="https://github.com/kevinm23nelson/Touring-Tracker/assets/162224908/e70bca50-ac58-4b8e-9a38-d506209c6588">
 <img width="600" alt="Screenshot 2024-06-11 at 9 35 22 PM" src="https://github.com/kevinm23nelson/Touring-Tracker/assets/162224908/fbaf71e9-7bf4-479a-b95e-ad318206c843">
 
 
 
 
-Here's a concise README for your project:
 
 Travel Tracker
 Project Overview
