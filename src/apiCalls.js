@@ -27,7 +27,6 @@ export function addNewTrip(trip) {
     body: JSON.stringify(trip)
   })
   .then(response => {
-    console.log('Response:', response); // Log the response for debugging
     if (!response.ok) {
       return response.json().then(error => {
         throw new Error(`HTTP error! status: ${response.status}, message: ${error.message}`);

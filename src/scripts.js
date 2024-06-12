@@ -31,16 +31,15 @@ document.addEventListener('DOMContentLoaded', () => {
   dateInput.value = today;
   dateInput.min = '2020-01-01';
   dateInput.max = '2025-12-31';
-
   todayDateElement.innerText = `Today is June 21, 2022!`;
 
   loginForm.addEventListener('submit', handleLogin);
-
-  // Add event listeners to form inputs
   dateInput.addEventListener('input', validateForm);
   durationInput.addEventListener('input', validateForm);
   travelersInput.addEventListener('input', validateForm);
   destinationSelect.addEventListener('input', validateForm);
+  calculateCostButton.addEventListener('click', calculateCost);
+  reserveTripButton.addEventListener('click', reserveTrip);
 
   function handleLogin(event) {
     event.preventDefault();
@@ -50,42 +49,28 @@ document.addEventListener('DOMContentLoaded', () => {
     if (validateCredentials(username, password)) {
       const travelerId = extractTravelerId(username);
       fetchAllData(travelerId).then(() => {
-        console.log('All Users Data:', allUsersData); // Log all users data
-        console.log('All Single User Data:', allSingleUserData); // Log single user data
+        console.log('All Users Data:', allUsersData);
+        console.log('All Single User Data:', allSingleUserData);
         const user = allUsersData.find(user => user.id === travelerId);
         if (!user) {
           console.error(`User with ID ${travelerId} not found.`);
           return;
         }
         showDashboard(user);
-
-        const { pastTripsDestinations, recentDestination } = travelerPastTrips(travelerId);
-        displayPastTrips(pastTripsDestinations, recentDestination);
-        displayRecentTripImage(recentDestination);
-
-        const totalCost = calculateAnnualSpend(travelerId);
-        const { agentFee, totalWithFee } = calculateTotalWithAgentFee(totalCost);
-        displayTotalCost(totalCost, agentFee, totalWithFee);
-
-        const upcomingTrips = getUpcomingTrips(travelerId);
-        displayUpcomingTrips(upcomingTrips);
-
-        const pendingTrips = allTripData.filter(trip => trip.userID === travelerId && trip.status === 'pending');
-        displayPendingTrips(pendingTrips);
-
+        displayUserData(travelerId);
         populateDestinations();
-        updateNextTripId(); // Update the next trip ID
+        updateNextTripId();
       });
     } else {
       alert('Invalid username or password');
     }
   }
 
-  function showDashboard(travelerData) {
-    console.log('Traveler Data:', travelerData); // Log traveler data
+  function showDashboard(user) {
+    console.log('Traveler Data:', user);
     loginView.classList.add('hidden');
     dashboard.classList.remove('hidden');
-    userGreeting.innerText = `Welcome, ${travelerData.name}`;
+    userGreeting.innerText = `Welcome, ${user.name}`;
   }
 
   function populateDestinations() {
@@ -108,7 +93,6 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (!destinationSelect.value) {
       errorMessage = 'Please select a destination.';
     }
-
     errorMessageElement.innerText = errorMessage;
     calculateCostButton.disabled = !!errorMessage;
     reserveTripButton.disabled = !!errorMessage || !estimatedCostElement.innerText;
@@ -120,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('Next Trip ID:', nextTripId);
   }
 
-  calculateCostButton.addEventListener('click', () => {
+  function calculateCost() {
     if (calculateCostButton.disabled) {
       validateForm();
     } else {
@@ -139,16 +123,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const totalWithFee = totalCost + agentFee;
 
         estimatedCostElement.innerText = `Estimated Cost: $${totalCost.toFixed(2)}\nAgent Fee: $${agentFee.toFixed(2)}\nTotal with Fee: $${totalWithFee.toFixed(2)}`;
-        errorMessageElement.innerText = ''; // Clear error message if calculation is successful
-        reserveTripButton.disabled = false; // Enable the Reserve Trip button
+        errorMessageElement.innerText = '';
+        reserveTripButton.disabled = false;
       } else {
         estimatedCostElement.innerText = 'Please select a valid destination.';
         reserveTripButton.disabled = true;
       }
     }
-  });
+  }
 
-  reserveTripButton.addEventListener('click', () => {
+  function reserveTrip() {
     const travelerId = extractTravelerId(document.getElementById('username').value);
     const date = dateInput.value.split('-').join('/');
     const duration = parseInt(durationInput.value);
@@ -156,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const destinationId = parseInt(destinationSelect.value);
 
     const newTrip = {
-      id: nextTripId++, // Increment the trip ID
+      id: nextTripId++,
       userID: travelerId,
       destinationID: destinationId,
       travelers: travelers,
@@ -166,36 +150,51 @@ document.addEventListener('DOMContentLoaded', () => {
       suggestedActivities: []
     };
 
-    console.log('New trip:', newTrip); // Log the new trip object for debugging
+    console.log('New trip:', newTrip);
 
     addNewTrip(newTrip)
       .then(data => {
-        console.log('Trip successfully added:', data); // Log the successful addition
+        console.log('Trip successfully added:', data);
         fetchAllData(travelerId).then(() => {
           const pendingTrips = allTripData.filter(trip => trip.userID === travelerId && trip.status === 'pending');
           displayPendingTrips(pendingTrips);
           const upcomingTrips = getUpcomingTrips(travelerId);
           displayUpcomingTrips(upcomingTrips);
-          resetForm(); // Reset the form after successful reservation
+          resetForm();
         });
       })
       .catch(error => {
         console.error('Error adding new trip:', error);
-        updateNextTripId(); // Update the next trip ID in case of an error
+        updateNextTripId();
       });
-  });
+  }
 
   function resetForm() {
-    dateInput.value = '2022-06-21'; // Reset the date to June 21, 2022
+    dateInput.value = '2022-06-21';
     durationInput.value = '';
     travelersInput.value = '';
     destinationSelect.value = '';
     estimatedCostElement.innerText = '';
     errorMessageElement.innerText = '';
     reserveTripButton.disabled = true;
-    validateForm(); // Ensure the form is validated again
+    validateForm();
   }
 
-  // Initial validation check
+  function displayUserData(travelerId) {
+    const { pastTripsDestinations, recentDestination } = travelerPastTrips(travelerId);
+    displayPastTrips(pastTripsDestinations, recentDestination);
+    displayRecentTripImage(recentDestination);
+
+    const totalCost = calculateAnnualSpend(travelerId);
+    const { agentFee, totalWithFee } = calculateTotalWithAgentFee(totalCost);
+    displayTotalCost(totalCost, agentFee, totalWithFee);
+
+    const upcomingTrips = getUpcomingTrips(travelerId);
+    displayUpcomingTrips(upcomingTrips);
+
+    const pendingTrips = allTripData.filter(trip => trip.userID === travelerId && trip.status === 'pending');
+    displayPendingTrips(pendingTrips);
+  }
+
   validateForm();
 });
