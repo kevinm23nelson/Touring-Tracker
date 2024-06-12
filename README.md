@@ -1,165 +1,81 @@
-# Webpack Starter Kit
+![Jun-11-2024 21-18-51](https://github.com/kevinm23nelson/Touring-Tracker/assets/162224908/519632e8-ffc4-40ff-a202-099548f00191)
+<img width="542" alt="Screenshot 2024-06-11 at 9 24 55 PM" src="https://github.com/kevinm23nelson/Touring-Tracker/assets/162224908/0b808819-2be9-4ff7-801d-72d340e7be67"> <img width="542" alt="Screenshot 2024-06-11 at 9 25 12 PM" src="https://github.com/kevinm23nelson/Touring-Tracker/assets/162224908/e70bca50-ac58-4b8e-9a38-d506209c6588">
+<img width="600" alt="Screenshot 2024-06-11 at 10 39 14 PM" src="https://github.com/kevinm23nelson/Touring-Tracker/assets/162224908/2061b950-449d-40e5-a928-d8d3aac6bc80">
 
-## Fork + Clone This Repo
 
-1. Fork this repo.
-2. Clone AND RENAME this repo with `git clone [remote-address] [what you want to name the repo]`. For example: 
-```bash
-git clone git@github.com:turingschool-examples/webpack-starter-kit.git overlook-hotel
-```
-3. `cd` into your new directory.
-4. Install the library dependencies with `npm install`.
-5. To verify that it is setup correctly, run `npm start` in your terminal. Go to `http://localhost:8080/` and you should see a page with the Turing logo image and a beautiful gradient background. If that's the case, you're good to go. Enter `control + c` in your terminal to stop the server at any time.
 
-## Where to Add Your Code
 
-### JavaScript
 
-You have to be very intentional with where you add your feature code. This repo uses a tool called [webpack](https://webpack.js.org/) to combine many JavaScript files into one big file. Webpack enables you to have many, separate JavaScript files to keep your code organized and readable. Webpack expects all of your code files to be in a specific place, or else it doesn't know how to combine them all behind the scenes.
 
-**Create all of your feature code files in the `src` directory.**
+***Travel Tracker***
 
-Since code is separated into multiple files, you need to use the `import` and `export` syntax to share code across file.
+Project Overview:
 
-Here is a video that walks through some information about [import and export](https://www.youtube.com/watch?v=_3oSWwapPKQ). There are a lot of resources out there about `import` and `export`, and resources will sometimes call them `ES6 modules`. It's something you will see in React and beyond.
+Travel Tracker is an application designed to help users track their travel plans, including past, upcoming, and pending trips. It allows users to book new trips, calculate costs, and view detailed information about their travels.
 
-### HTML
+Setup & Installation:
 
-Add the HTML you need in the `index.html` file in the `./dist` directory. There is some boilerplate HTML that exists from the start that you can modify.
+To view and use the application, follow these steps:
 
-### Images
+Clone the repository:
 
-Add your image files in the `src/images` directory. Similar to CSS files, you need to `import` image files in the JavaScript entry file (`scripts.js`). Then go into the HTML and add an `img` element with the `src` attribute pointing to the `images` directory. There is an example in the `index.html` file for you to see.
+```git clone git@github.com:kevinm23nelson/touring-tracker.git```
 
-## How to View Your Code in Action
+Navigate to the project directory:
 
-In the terminal, run:
+```cd travel-tracker```
+Install npm dependencies:
 
-```bash
-npm start
-```
 
-You will see a bunch of lines output to your terminal. One of those lines will be something like:
+```npm install```
 
-```bash
-Project is running at http://localhost:8080/
-```
+Install Webpack:
 
-Go to `http://localhost:8080/` in your browser to view your code running in the browser.
+```npm install webpack webpack-cli --save-dev```
 
----
+Start the development server:
 
-## Test Files Organization
+```npm start```
 
-Similar to feature code, your test code needs to be put in a specific place for it to run successfully.
+Open localhost:8080 in your browser to view the application.
 
-**Put all of your test files in the `test` directory.** As a convention, all test filenames should end with `-test.js`. For instance: `box-test.js`.
+Running Tests
+To view the test suite, run:
 
-## Running Your Tests
+```npm test```
 
-Run your test suite using the command:
+Skills Utilized:
 
-```bash
-npm test
-```
+-OOP using ES6 classes: Organized the codebase with Object-Oriented Programming principles.
 
-The test results will output to the terminal.
+-Array Iterator Methods: Leveraged methods like .map, .filter, and .reduce for data manipulation.
 
----
+-Test Driven Development: Designed the application by writing tests before implementing functionality.
 
-## Linting Your Code
+-Accessibility: Followed ARIA guidelines and chose a color scheme accommodating for colorblindness.
 
-Run the command in your terminal `npm run lint` to run the linter on your JavaScript code. There will be errors and warnings right from the start in this starter kit - the linter is still running successfully.
+-Project Workflow: Used a project board, branches, commits, PRs, and code reviews for efficient workflow.
 
-Your linter will look at the JavaScript files you have within the `src` directory and the `test` directory.
+-Planning & Refactoring: Planned the project with wireframes and refactored code for better structure.
 
-## Webpack?
+*Technologies Used*
 
-If you look in the `package.json` file, you'll see one of the library dependencies called `webpack`. If you're interested in learning more about what Webpack is and how it works behind the scenes, take a look through the [Webpack configuration documentation](https://webpack.js.org/concepts/).
+Vanilla JS: Core programming language used.
+HTML & CSS: Markup and styling.
+SASS: For advanced CSS styling.
+Webpack: Module bundler.
+Chai & Mocha: Testing frameworks.
+NPM: Package manager.
+Fetch API: For server communication.
+GitHub/Git: Version control.
+Eslint: Linting tool.
 
-## Deploying to GitHub Pages
+*Wins & Challenges*
 
-_If you are finished with the functionality and testing of your project_, then you can consider deploying your project to the web! This way anyone can play it without cloning down your repo.
+Organizing Data:
 
-[GitHub Pages](https://pages.github.com/) is a great way to deploy your project to the web. Don't worry about this until your project is free of bugs and well tested!
-
-If you _are_ done, you can follow [this procedure](./gh-pages-procedure.md) to get your project live on GitHub Pages.
-
----
-## Installing Typescript (*Extension Only*)
-1. Install `typescript` and `ts-loader`:
-```
-npm i -D typescript ts-loader
-```
-
-2. Create a `tsconfig.json` file in the root directory
-```
-touch tsconfig.json
-```
-
-3. Add the following to the `tsconfig.json` file:
-```js
-{
-  "compilerOptions": {
-    "outDir": "./dist/",
-    "noImplicitAny": true,
-    "module": "es6",
-    "target": "es5",
-    "allowJs": true,
-    "moduleResolution": "node"
-  }
-}
-```
-
-4. In your webpack.config.js file, update it to be:
-```js
-const path = require('path');
-module.exports = {
-  "mode": "none",
-  "entry": "./src/scripts.ts",
-  "output": {
-    "path": __dirname + '/dist',
-    "filename": "bundle.js",
-  },
-  devServer: {
-    static: {
-      directory: path.join(__dirname, 'dist')
-    }
-  },
-  "devtool": "source-map",
-  // CSS and file (image) loaders
-  "module": {
-    "rules": [
-      {
-        test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
-      },
-      {
-        test: /\.(png|svg|jpg|gif)$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]',
-              outputPath: 'images/',
-              publicPath: 'images/'
-            }
-          }
-        ]
-      },
-      {
-        test: /\.tsx?$/,
-        use: 'ts-loader',
-        exclude: /node_modules/,
-      }
-    ]
-  },
-  resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
-  },
-};
-```
-
-5. Update all `.js` files to be `.ts` including `scripts.ts`.
-
-6. From here, you should now get some TypeScript errors when running `npm start` that you can begin working through.
+Planning architecture early helped in smooth coding of data models.
+Prioritizing Tasks:
+Kept tasks organized with priority tags, aiding in smooth project management.
+Handling API:
+Encountered various methods for generating unique trip IDs, learned about primary keys in POST requests.

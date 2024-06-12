@@ -34,9 +34,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   todayDateElement.innerText = `Today is June 21, 2022!`;
 
+
+  window.addEventListener('load', () => {
+    loginView.classList.add('fade-in');
+  });
+
   loginForm.addEventListener('submit', handleLogin);
 
-  // Add event listeners to form inputs
+
   dateInput.addEventListener('input', validateForm);
   durationInput.addEventListener('input', validateForm);
   travelersInput.addEventListener('input', validateForm);
@@ -50,8 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (validateCredentials(username, password)) {
       const travelerId = extractTravelerId(username);
       fetchAllData(travelerId).then(() => {
-        console.log('All Users Data:', allUsersData); // Log all users data
-        console.log('All Single User Data:', allSingleUserData); // Log single user data
+    
         const user = allUsersData.find(user => user.id === travelerId);
         if (!user) {
           console.error(`User with ID ${travelerId} not found.`);
@@ -82,9 +86,16 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function showDashboard(travelerData) {
-    console.log('Traveler Data:', travelerData); // Log traveler data
     loginView.classList.add('hidden');
     dashboard.classList.remove('hidden');
+    
+    const contentLeft = document.querySelector('.content-left');
+    const contentRight = document.querySelector('.content-right');
+    
+
+    contentLeft.classList.add('fade-in-left');
+    contentRight.classList.add('fade-in-right');
+
     userGreeting.innerText = `Welcome, ${travelerData.name}`;
   }
 
@@ -117,7 +128,6 @@ document.addEventListener('DOMContentLoaded', () => {
   function updateNextTripId() {
     const maxId = allTripData.reduce((max, trip) => Math.max(max, trip.id), 0);
     nextTripId = maxId + 1;
-    console.log('Next Trip ID:', nextTripId);
   }
 
   calculateCostButton.addEventListener('click', () => {
@@ -156,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const destinationId = parseInt(destinationSelect.value);
 
     const newTrip = {
-      id: nextTripId++, // Increment the trip ID
+      id: nextTripId++, 
       userID: travelerId,
       destinationID: destinationId,
       travelers: travelers,
@@ -166,22 +176,21 @@ document.addEventListener('DOMContentLoaded', () => {
       suggestedActivities: []
     };
 
-    console.log('New trip:', newTrip); // Log the new trip object for debugging
+   
 
     addNewTrip(newTrip)
       .then(data => {
-        console.log('Trip successfully added:', data); // Log the successful addition
         fetchAllData(travelerId).then(() => {
           const pendingTrips = allTripData.filter(trip => trip.userID === travelerId && trip.status === 'pending');
           displayPendingTrips(pendingTrips);
           const upcomingTrips = getUpcomingTrips(travelerId);
           displayUpcomingTrips(upcomingTrips);
-          resetForm(); // Reset the form after successful reservation
+          resetForm(); 
         });
       })
       .catch(error => {
         console.error('Error adding new trip:', error);
-        updateNextTripId(); // Update the next trip ID in case of an error
+        updateNextTripId(); 
       });
   });
 
@@ -196,5 +205,6 @@ document.addEventListener('DOMContentLoaded', () => {
     validateForm(); 
   }
 
+  // Initial validation check
   validateForm();
 });
