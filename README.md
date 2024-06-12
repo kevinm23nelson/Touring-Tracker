@@ -5,21 +5,71 @@
 
 
 
-About The Project
-This project is part of Turing Software and Designs' Front-End Program, Module 2. The project focuses on creating an application to manage and track different trips for users and a travel agency. The program is implemented with ES6 syntax and exclusively uses array-prototype methods whenever iterations need to be performed. There are no for loops used in the program. A Webpack starter-kit was provided, but all code and tests are written by the assigned developer. This program uses Object Oriented Programming to drive the design of the application and the code. This program focuses on working with an API to send and receive data (via fetch functions), the use of Sass alongside traditional css, and Mocha and Chai for testing class functions.
 
-Built With
-Node.js
-Mocha
-Chai
-Webpack
-Installation
-In your terminal:
+Here's a concise README for your project:
 
-Clone the repo- git clone git@github.com:Kristiannmiller/km-Travel-Tracker.git
+Travel Tracker
+Project Overview
+Travel Tracker is an application designed to help users track their travel plans, including past, upcoming, and pending trips. It allows users to book new trips, calculate costs, and view detailed information about their travels.
 
-Install NPM packages- npm install
+Setup & Installation
+To view and use the application, follow these steps:
 
-Run webpack - npm start
+Clone the repository:
 
-Visit http://localhost:8080/ in your browser
+sh
+Copy code
+git clone git@github.com:your-username/travel-tracker.git
+Navigate to the project directory:
+
+sh
+Copy code
+cd travel-tracker
+Install npm dependencies:
+
+sh
+Copy code
+npm install
+Install Webpack:
+
+sh
+Copy code
+npm install webpack webpack-cli --save-dev
+Start the development server:
+
+sh
+Copy code
+npm start
+Open localhost:8080 in your browser to view the application.
+
+Running Tests
+To view the test suite, run:
+
+sh
+Copy code
+npm test
+Skills Utilized
+OOP using ES6 classes: Organized the codebase with Object-Oriented Programming principles.
+Array Iterator Methods: Leveraged methods like .map, .filter, and .reduce for data manipulation.
+Test Driven Development: Designed the application by writing tests before implementing functionality.
+Accessibility: Followed ARIA guidelines and chose a color scheme accommodating for colorblindness.
+Project Workflow: Used a project board, branches, commits, PRs, and code reviews for efficient workflow.
+Planning & Refactoring: Planned the project with wireframes and refactored code for better structure.
+Technologies Used
+Vanilla JS: Core programming language used.
+HTML & CSS: Markup and styling.
+SASS: For advanced CSS styling.
+Webpack: Module bundler.
+Chai & Mocha: Testing frameworks.
+NPM: Package manager.
+Fetch API: For server communication.
+GitHub/Git: Version control.
+Eslint: Linting tool.
+Wins & Challenges
+Organizing Data:
+Learned the difference between real-life users and data models.
+Planning architecture early helped in smooth coding of data models.
+Prioritizing Tasks:
+Kept tasks organized with priority tags, aiding in smooth project management.
+Handling API:
+Encountered various methods for generating unique trip IDs, learned about primary keys in POST requests.
