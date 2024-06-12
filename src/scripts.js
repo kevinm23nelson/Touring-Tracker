@@ -49,8 +49,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (validateCredentials(username, password)) {
       const travelerId = extractTravelerId(username);
       fetchAllData(travelerId).then(() => {
-        console.log('All Users Data:', allUsersData);
-        console.log('All Single User Data:', allSingleUserData);
         const user = allUsersData.find(user => user.id === travelerId);
         if (!user) {
           console.error(`User with ID ${travelerId} not found.`);
@@ -67,7 +65,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function showDashboard(user) {
-    console.log('Traveler Data:', user);
     loginView.classList.add('hidden');
     dashboard.classList.remove('hidden');
     userGreeting.innerText = `Welcome, ${user.name}`;
@@ -101,7 +98,6 @@ document.addEventListener('DOMContentLoaded', () => {
   function updateNextTripId() {
     const maxId = allTripData.reduce((max, trip) => Math.max(max, trip.id), 0);
     nextTripId = maxId + 1;
-    console.log('Next Trip ID:', nextTripId);
   }
 
   function calculateCost() {
@@ -150,8 +146,6 @@ document.addEventListener('DOMContentLoaded', () => {
       suggestedActivities: []
     };
 
-    console.log('New trip:', newTrip);
-
     addNewTrip(newTrip)
       .then(data => {
         console.log('Trip successfully added:', data);
@@ -168,7 +162,6 @@ document.addEventListener('DOMContentLoaded', () => {
         updateNextTripId();
       });
   }
-
   function resetForm() {
     dateInput.value = '2022-06-21';
     durationInput.value = '';
@@ -179,7 +172,6 @@ document.addEventListener('DOMContentLoaded', () => {
     reserveTripButton.disabled = true;
     validateForm();
   }
-
   function displayUserData(travelerId) {
     const { pastTripsDestinations, recentDestination } = travelerPastTrips(travelerId);
     displayPastTrips(pastTripsDestinations, recentDestination);
@@ -195,6 +187,5 @@ document.addEventListener('DOMContentLoaded', () => {
     const pendingTrips = allTripData.filter(trip => trip.userID === travelerId && trip.status === 'pending');
     displayPendingTrips(pendingTrips);
   }
-
   validateForm();
 });

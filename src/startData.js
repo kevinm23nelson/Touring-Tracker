@@ -17,7 +17,6 @@ export const fetchAllData = (userId) => {
     allSingleUserData = singleUser;
     allTripData = trips.trips;
     allDestinationData = destinations.destinations;
-    console.log('Fetched all data:', { allUsersData, allSingleUserData, allTripData, allDestinationData });
   }).catch(error => {
     console.error('Error fetching data:', error);
   });
