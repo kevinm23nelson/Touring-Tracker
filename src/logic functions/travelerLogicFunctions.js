@@ -2,7 +2,7 @@ import { allTripData, allDestinationData } from '../startData';
 
 const travelerPastTrips = (travelerId, tripsArray = allTripData, destinationsArray = allDestinationData) => {
   const today = new Date('2022/06/21');
-  
+
   const userTrips = tripsArray.filter(trip => trip.userID === travelerId && new Date(trip.date) < today);
 
   if (userTrips.length === 0 || destinationsArray.length === 0) {
@@ -53,12 +53,16 @@ const getUpcomingTrips = (travelerId, tripsArray = allTripData, destinationsArra
   const startDate = new Date('2022/06/21');
   const endDate = new Date('2023/01/01');
 
-  const userTrips = tripsArray.filter(trip => trip.userID === travelerId && new Date(trip.date) >= startDate && new Date(trip.date) <= endDate);
+  const userTrips = tripsArray.filter(trip => trip.userID === travelerId && trip.status === 'approved' && new Date(trip.date) >= startDate && new Date(trip.date) <= endDate);
+
+  if (userTrips.length === 0) {
+    return [];
+  }
 
   const upcomingTrips = userTrips.map(trip => {
     const destination = destinationsArray.find(destination => destination.id === trip.destinationID);
-    return destination ? destination.destination : '';
-  }).filter(destination => destination !== '');
+    return destination ? { destination: destination.destination, date: trip.date, image: destination.image } : null;
+  }).filter(trip => trip !== null);
 
   return upcomingTrips;
 };

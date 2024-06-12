@@ -1,13 +1,18 @@
 // utils.js
-export function fetchData(url, key) {
-    return fetch(url)
-      .then(response => response.json())
-      .then(data => {
-        if (!data[key] || !Array.isArray(data[key])) {
-          throw new Error(`No ${key} data found or data format incorrect`);
-        }
-        return data[key];
-      })
-      .catch(error => console.error(`Error fetching ${key} data:`, error));
-  }
-  
+export function fetchData(url) {
+  return fetch(url)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log(`Fetched data from ${url}:`, data); // Log fetched data
+      return data;
+    })
+    .catch(error => {
+      console.error(`Error fetching data from ${url}:`, error);
+      throw error;
+    });
+}

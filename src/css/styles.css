@@ -34,6 +34,15 @@ body {
   width: 100%;
 }
 
+.main-heading {
+  color: white; /* Set specified texts to white */
+}
+
+.date-heading {
+  color: white; /* Set date text to white */
+  font-size: 1.2em; /* Smaller than main headings */
+}
+
 .login-view h1 {
   font-size: 60px;
   text-shadow: 5px 10px 5px rgba(0, 0, 0, 0.7);
@@ -88,7 +97,7 @@ body {
 .content-left, .content-right {
   min-height: 100vh;
   padding: 30px;
-  color: #fff;
+  color: #555c66; /* Adjust text color for readability */
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -104,10 +113,73 @@ body {
   url('../images/Travel Photo - Road in Mountains.jpg') center/cover no-repeat;
 }
 
+.content-left-top {
+  margin-bottom: 40px; /* Add space between sections */
+}
+
+.content-left-bottom {
+  background-color: #f5f5f5; /* or the specific color you are using */
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center; /* Center the text */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center child elements */
+}
+
+.content-left-bottom .text {
+  color: #333; /* Adjust text color for readability */
+  margin-bottom: 10px; /* Add some space between text and image */
+}
+
+.content-left-bottom h2 {
+  color: #222; /* Adjust heading color */
+}
+
+.content-left-bottom .trip-image {
+  width: 100%;
+  max-width: 600px; /* Adjust to make the image larger */
+  height: 300px; /* Adjust to make the image larger */
+  margin-top: 10px;
+  object-fit: cover;
+  position: relative;
+}
+
+.content-left-bottom .destination-overlay,
+.content-right-top .destination-overlay {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 5px 10px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.content-right .content-img {
+  width: 100%;
+  height: 200px; /* Ensure this matches the height of the upcoming trip image */
+  object-fit: cover;
+}
+
 .content-left h1, .content-right h1 {
   font-size: 60px;
   text-shadow: 5px, 10px, 5px rgba(0, 0, 0, 0.7);
   margin-bottom: 12px;
+}
+
+.content-right-top .content-img {
+  position: relative;
+  width: 100%;
+  height: 200px; /* Adjust as necessary */
+  background-size: cover;
+  background-position: center;
+  margin-top: 10px;
+  display: flex;
+  align-items: flex-end; /* Align text towards the bottom */
+  justify-content: center; /* Center text horizontally */
 }
 
 .content-right-top, .content-right-middle, .content-right-bottom {
@@ -130,9 +202,26 @@ body {
 .content-right-bottom .content-img {
   background-image: url('../images/Travel Photo - Beach with Palm Trees.jpg');
 }
+.content-right-middle .content-img {
+  width: 100%;
+  height: 400px; /* Ensure this matches the height of the upcoming trip image */
+  position: relative; /* Ensure positioning relative to place overlay correctly */
+}
+
+.content-right-middle .destination-overlay {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 5px 10px;
+  border-radius: 5px;
+  text-align: center;
+}
 
 .content-text {
-  color: #555c66;
+  color: #555c66; /* Adjust text color for readability */
   background-color: #fff;
   padding: 30px;
   display: flex;
@@ -201,4 +290,77 @@ body {
   .content-left, .content-right {
     width: 50%;
   }
+}
+
+/* Additional Styles for New Trip Form */
+.trip-request-interaction {
+  background-color: #f5f5f5;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.new-trip-input {
+  margin-bottom: 10px;
+}
+
+.new-trip-input label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 5px;
+  color: #555c66; /* Match text color */
+}
+
+.new-trip-input input, .new-trip-input select {
+  padding: 10px;
+  font-size: 1em;
+  width: 100%;
+  max-width: 300px;
+}
+
+.new-trip-form button {
+  padding: 10px 20px;
+  background-color: #1eddfb;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+  font-size: 1.2em; /* Increase text size */
+}
+
+.new-trip-form button:hover {
+  background-color: #30b556;
+}
+
+.new-trip-estimate {
+  margin-top: 20px;
+}
+
+#estimated-cost {
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+.error-message {
+  color: #555c66;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* Ensure the existing styles are applied correctly */
+.content-left-bottom .destination-overlay,
+.content-right-top .destination-overlay {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 5px 10px;
+  border-radius: 5px;
+  text-align: center;
 }

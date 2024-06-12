@@ -1,9 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Travel Tracker</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
 <body>
   <section class="login-view">
     <div class="border-container">
       <div class="content-left">
-        <h2>An Endless World of Possibilities</h2>
-        <h1>Touring Tracker</h1>
+        <h2 class="main-heading">An Endless World of Possibilities</h2>
+        <h1 class="main-heading">Touring Tracker</h1>
         <form class="login-form">
           <input type="text" id="username" placeholder="Username" required>
           <input type="password" id="password" placeholder="Password" required>
@@ -15,19 +23,45 @@
   <section class="dashboard hidden">
     <div class="wrapper">
       <section class="content-left">
-        <h2 id="user-greeting">Welcome, User!</h2>
+        <h2 id="user-greeting" class="main-heading">Welcome, User!</h2>
+        <h3 id="today-date" class="date-heading"></h3>
         <div class="content-left-top">
-          <h2>Book a Trip Section</h2>
-          <form class="login-form">
-            <input type="text" id="username" placeholder="Username" required>
-          </form>
-          <p class="text">This area can be written/displayed with anything.</p>
-          <a href="#">In Case I Need a Link</a>
+          <h2 class="main-heading">Book a Trip</h2>
+          <section class="trip-request-interaction">
+            <form class="new-trip-form">
+              <section class="new-trip-input">
+                <label for="date-input">Trip Start Date:</label>
+                <input type="date" id="date-input" placeholder="yyyy/mm/dd" min="2020-01-01" max="2025-12-31" required>
+              </section>
+              <section class="new-trip-input">
+                <label for="duration-input">Number of Days:</label>
+                <input type="number" min="3" max="60" id="duration-input" required>
+              </section>
+              <section class="new-trip-input">
+                <label for="travelers-input">Number of Travelers:</label>
+                <input type="number" min="1" max="20" id="travelers-input" required>
+              </section>
+              <section class="new-trip-input">
+                <label for="destination-select">Destination:</label>
+                <select id="destination-select" required>
+                  <option value="">Choose your Destination</option>
+                </select>
+              </section>
+              <button type="button" id="calculate-cost-button" disabled>Calculate Cost</button>
+              <button type="button" id="reserve-trip-button" disabled>Reserve Trip</button>
+            </form>
+            <section class="new-trip-estimate">
+              <p id="estimated-cost"></p>
+            </section>
+            <p id="error-message" class="error-message"></p>
+          </section>
         </div>
         <div class="content-left-bottom">
           <h2>Upcoming Trips</h2>
-          <p class="text">This area can be written/displayed with anything.</p>
-          <a href="#">See Upcoming Trips</a>
+          <div class="text"></div>
+          <div class="trip-image">
+            <div class="destination-overlay"></div>
+          </div>
         </div>
       </section>
       <section class="content-right">
@@ -35,35 +69,33 @@
           <div class="content-text">
             <h2>Past Trips</h2>
             <p class="text">This area can be written/displayed with anything.</p>
-            <a href="#">See Past Trips</a>
+            <!-- <a href="#">See Past Trips</a> -->
           </div>
           <div class="content-img">
-            <!-- IMAGE -->
+            <div class="destination-overlay"></div>
           </div>
         </div>
         <div class="content-right-middle">
           <div class="content-text">
             <h2>Pending Trips</h2>
             <p class="text">This area can be written/displayed with anything.</p>
-            <a href="#">See Your Pending Trips</a>
+            <!-- <a href="#">See Your Pending Trips</a> -->
           </div>
           <div class="content-img">
-            <!-- IMAGE -->
+            <div class="destination-overlay"></div>
           </div>
         </div>
         <div class="content-right-bottom">
           <div class="content-text">
-            <h2>Total Amount Spent on Trips</h2>
+            <h2>Total Amount Spent on Trips Last Year (2021)</h2>
             <p class="text">This area can be written/displayed with anything.</p>
-            <a href="#">See Total Amount Spent on Trips</a>
+            <!-- <a href="#">See Total Amount Spent on Trips</a> -->
           </div>
-          <div class="content-img">
-            <!-- IMAGE -->
-          </div>
+          <div class="content-img"></div>
         </div>
       </section>
     </div>
   </section>
-  <script src="scripts.js"></script>
   <script src="bundle.js"></script>
 </body>
+</html>

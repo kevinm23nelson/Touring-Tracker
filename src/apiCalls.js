@@ -2,19 +2,19 @@
 import { fetchData } from './utils';
 
 export function fetchAllUserData() {
-  return fetchData("http://localhost:3001/api/v1/travelers", "travelers");
+  return fetchData("http://localhost:3001/api/v1/travelers");
 }
 
 export function fetchSingleUserData(id) {
-  return fetchData(`http://localhost:3001/api/v1/travelers/${id}`, "travelers");
+  return fetchData(`http://localhost:3001/api/v1/travelers/${id}`);
 }
 
 export function fetchAllTripsData() {
-  return fetchData('http://localhost:3001/api/v1/trips', "trips");
+  return fetchData('http://localhost:3001/api/v1/trips');
 }
 
 export function fetchAllDestinationData() {
-  return fetchData('http://localhost:3001/api/v1/destinations', "destinations");
+  return fetchData('http://localhost:3001/api/v1/destinations');
 }
 
 // Post
@@ -26,11 +26,17 @@ export function addNewTrip(trip) {
     },
     body: JSON.stringify(trip)
   })
-    .then(response => response.json())
-    .then(data => {
-      return data;
-    })
-    .catch(error => {
-      console.error('Error adding new trip:', error);
-    });
+  .then(response => {
+    console.log('Response:', response); // Log the response for debugging
+    if (!response.ok) {
+      return response.json().then(error => {
+        throw new Error(`HTTP error! status: ${response.status}, message: ${error.message}`);
+      });
+    }
+    return response.json();
+  })
+  .catch(error => {
+    console.error('Error adding new trip:', error);
+    throw error;
+  });
 }
