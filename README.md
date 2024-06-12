@@ -43,13 +43,20 @@ To view the test suite, run:
 
 Skills Utilized:
 
-OOP using ES6 classes: Organized the codebase with Object-Oriented Programming principles.
-Array Iterator Methods: Leveraged methods like .map, .filter, and .reduce for data manipulation.
-Test Driven Development: Designed the application by writing tests before implementing functionality.
-Accessibility: Followed ARIA guidelines and chose a color scheme accommodating for colorblindness.
-Project Workflow: Used a project board, branches, commits, PRs, and code reviews for efficient workflow.
-Planning & Refactoring: Planned the project with wireframes and refactored code for better structure.
-Technologies Used
+-OOP using ES6 classes: Organized the codebase with Object-Oriented Programming principles.
+
+-Array Iterator Methods: Leveraged methods like .map, .filter, and .reduce for data manipulation.
+
+-Test Driven Development: Designed the application by writing tests before implementing functionality.
+
+-Accessibility: Followed ARIA guidelines and chose a color scheme accommodating for colorblindness.
+
+-Project Workflow: Used a project board, branches, commits, PRs, and code reviews for efficient workflow.
+
+-Planning & Refactoring: Planned the project with wireframes and refactored code for better structure.
+
+*Technologies Used*
+
 Vanilla JS: Core programming language used.
 HTML & CSS: Markup and styling.
 SASS: For advanced CSS styling.
@@ -59,9 +66,11 @@ NPM: Package manager.
 Fetch API: For server communication.
 GitHub/Git: Version control.
 Eslint: Linting tool.
-Wins & Challenges
+
+*Wins & Challenges*
+
 Organizing Data:
-Learned the difference between real-life users and data models.
+
 Planning architecture early helped in smooth coding of data models.
 Prioritizing Tasks:
 Kept tasks organized with priority tags, aiding in smooth project management.
