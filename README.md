@@ -34,7 +34,8 @@ Install Webpack:
 
 Start the development server:
 
-npm start
+```npm start```
+
 Open localhost:8080 in your browser to view the application.
 
 Running Tests
